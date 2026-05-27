@@ -1,0 +1,245 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "name": "PH Gaming Intel",
+      "url": `${siteUrl}/`,
+      "description": "Philippines gaming industry news, regulatory analysis, and data tools.",
+      "publisher": { "@id": `${siteUrl}/#organization` },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${siteUrl}/?s={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      "name": "PH Gaming Intel",
+      "url": `${siteUrl}/`,
+      "logo": { "@type": "ImageObject", "url": `${siteUrl}/logo.png` },
+      "sameAs": []
+    },
+    {
+      "@type": "ItemList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Manila Bay at 4 AM: The Hidden Shift Change Inside PH Integrated Resorts", "url": `${siteUrl}/articles/manila-bay-4am-ir-workers.html` },
+        { "@type": "ListItem", "position": 2, "name": "Cambodia Gaming License Framework: Three-Tier System Targets Former POGO Operators", "url": `${siteUrl}/articles/cambodia-gaming-license-pogo.html` },
+        { "@type": "ListItem", "position": 3, "name": "PAGCOR Privatization Bill SB 2814 Advances in Senate Committee", "url": `${siteUrl}/articles/pagcor-privatization-bill.html` },
+        { "@type": "ListItem", "position": 4, "name": "Bloomberry Resorts Q1 2026: Revenue Down 18% as VIP Rolling Chip Drops 26%", "url": `${siteUrl}/articles/bloomberry-q1-2026-solaire.html` },
+        { "@type": "ListItem", "position": 5, "name": "PIGO vs e-Games: The Regulatory Maze Mapped", "url": `${siteUrl}/articles/pigo-vs-egames-regulatory-maze.html` },
+        { "@type": "ListItem", "position": 6, "name": "Best PAGCOR Licensed Online Casinos Philippines 2026", "url": `${siteUrl}/articles/pagcor-licensed-casinos-guide-2026.html` },
+        { "@type": "ListItem", "position": 7, "name": "Philippine GGR Falls 15.8% to $1.42bn in Q1 2026", "url": `${siteUrl}/articles/philippine-ggr-falls-q1-2026-pagcor.html` },
+        { "@type": "ListItem", "position": 8, "name": "Okada Play Commercial Launch: PhilWeb and Tiger Resort Go Digital", "url": `${siteUrl}/articles/okada-play-commercial-launch.html` },
+        { "@type": "ListItem", "position": 9, "name": "Altenar Powers DigiPlus ArenaPlus Sportsbook in the Philippines", "url": `${siteUrl}/articles/altenar-arenaplus-sportsbook.html` }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="PH Gaming Intel — Philippines Gaming Industry News & Analysis"
+  description="PH Gaming Intel covers the Philippines gaming industry with in-depth news, regulatory analysis, PAGCOR updates, POGO tracking, and IR resort coverage."
+  activePage="news"
+  jsonLd={jsonLd}
+>
+
+  <!-- HERO — Featured Story -->
+  <section class="hero-featured" aria-label="Featured story">
+    <img src="/hero/manila-bay-4am-hidden-shift-ir-workers.png"
+         alt="Manila Bay at dawn — integrated resort workers changing shifts at 4 AM"
+         width="1920" height="1080" loading="eager">
+    <div class="overlay">
+      <div class="overlay-inner">
+        <span class="tag tag-longread">Longread</span>
+        <h1>Manila Bay at 4 AM: The Hidden Shift Change Inside PH Integrated Resorts</h1>
+        <p class="dek">When the high rollers leave and the floor lights dim, a different kind of labor begins. A ground-level investigation into the workforce that keeps Entertainment City running.</p>
+        <p class="meta">May 25, 2026 &middot; 18 min read &middot; Editorial Score 10/10</p>
+        <a href="/articles/manila-bay-4am-ir-workers.html" style="display:inline-block;margin-top:16px;padding:12px 28px;border-radius:8px;background:var(--gold);color:var(--dark);font-family:var(--font-ui);font-size:14px;font-weight:700;letter-spacing:.5px;transition:background .2s;">Read the Full Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST NEWS -->
+  <section class="mt-section mb-section" id="latest-news" aria-label="Latest news">
+    <div class="section-wrap">
+      <h2 class="section-title">Latest News</h2>
+      <div class="card-grid">
+
+        <a href="/articles/cambodia-gaming-license-pogo.html" class="card">
+          <div class="card-img">
+            <img src="/hero/cambodia-gaming-license-framework-pogo-operators-2026.png"
+                 alt="Cambodia gaming license framework for former POGO operators"
+                 width="640" height="360" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="tag tag-news">News</span>
+            <h3>Cambodia Gaming License Framework Targets Former POGO Operators</h3>
+            <p class="card-dek">Three-tier licensing system targeting former POGO operators signals Southeast Asia's next regulatory battleground as displaced firms seek new jurisdictions.</p>
+            <p class="card-meta">May 24, 2026 &middot; Score 9/10</p>
+          </div>
+        </a>
+
+        <a href="/articles/pagcor-privatization-bill.html" class="card">
+          <div class="card-img">
+            <img src="/hero/pagcor-privatization-bill-senate-committee-2026.png"
+                 alt="PAGCOR privatization bill SB 2814 in Senate committee hearing"
+                 width="640" height="360" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="tag tag-news">News</span>
+            <h3>PAGCOR Privatization Bill SB 2814 Advances in Senate</h3>
+            <p class="card-dek">SB 2814 proposes separating PAGCOR's role as regulator from operator, marking the most significant restructuring proposal in the agency's 47-year history.</p>
+            <p class="card-meta">May 24, 2026 &middot; Score 9/10</p>
+          </div>
+        </a>
+
+        <a href="/articles/bloomberry-q1-2026-solaire.html" class="card">
+          <div class="card-img">
+            <img src="/hero/bloomberry-resorts-q1-2026-revenue-solaire.png"
+                 alt="Bloomberry Resorts Solaire Q1 2026 revenue report"
+                 width="640" height="360" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="tag tag-news">News</span>
+            <h3>Bloomberry Q1 2026: Revenue Drops 18%, VIP Rolling Chip Down 26%</h3>
+            <p class="card-dek">Solaire's parent reports a challenging first quarter as VIP volumes slide amid broader market headwinds hitting the Philippine integrated resort sector.</p>
+            <p class="card-meta">May 23, 2026 &middot; Score 9/10</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYSIS & GUIDES -->
+  <section class="mb-section" id="analysis-guides" aria-label="Analysis and guides">
+    <div class="section-wrap">
+      <h2 class="section-title">Analysis &amp; Guides</h2>
+      <div class="card-grid-2">
+
+        <a href="/articles/pigo-vs-egames-regulatory-maze.html" class="card card-lg">
+          <div class="card-img">
+            <img src="/hero/pigo-vs-egames-regulatory-maze-mapped-2026.png"
+                 alt="PIGO vs e-Games regulatory comparison map"
+                 width="640" height="360" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="tag tag-analysis">Analysis</span>
+            <h3>PIGO vs e-Games: The Regulatory Maze Mapped</h3>
+            <p class="card-dek">Two parallel online gaming license systems under one regulator. We untangle the overlapping jurisdictions, fee structures, and compliance requirements that define the Philippine online gaming landscape in 2026.</p>
+            <p class="card-meta">May 25, 2026 &middot; Score 9/10</p>
+          </div>
+        </a>
+
+        <div class="card-stack">
+          <a href="/articles/pagcor-licensed-casinos-guide-2026.html" class="card-row">
+            <div class="card-img">
+              <img src="/hero/best-pagcor-licensed-online-casinos-philippines-2026.png"
+                   alt="PAGCOR licensed online casinos verification guide"
+                   width="200" height="150" loading="lazy">
+            </div>
+            <div class="card-body">
+              <span class="tag tag-guide">Guide</span>
+              <h3>Best PAGCOR Licensed Online Casinos Philippines 2026</h3>
+              <p class="card-meta">May 25, 2026 &middot; Score 9/10</p>
+            </div>
+          </a>
+
+          <a href="/articles/philippine-ggr-falls-q1-2026-pagcor.html" class="card-row">
+            <div class="card-img">
+              <img src="/hero/philippine-ggr-falls-q1-2026-pagcor.png"
+                   alt="Philippine gross gaming revenue Q1 2026 chart"
+                   width="200" height="150" loading="lazy">
+            </div>
+            <div class="card-body">
+              <span class="tag tag-news">News</span>
+              <h3>Philippine GGR Falls 15.8% to $1.42bn in Q1 2026</h3>
+              <p class="card-meta">May 18, 2026 &middot; Score 9/10</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LONGREADS -->
+  <section class="mb-section" id="longreads" aria-label="Longreads">
+    <div class="section-wrap">
+      <h2 class="section-title">Longreads</h2>
+      <a href="/articles/manila-bay-4am-ir-workers.html" class="card-cinematic">
+        <img src="/hero/manila-bay-4am-hidden-shift-ir-workers.png"
+             alt="Manila Bay waterfront at 4 AM — integrated resort workers"
+             width="1280" height="500" loading="lazy">
+        <div class="card-body">
+          <span class="tag tag-longread">Longread</span>
+          <h3>Manila Bay at 4 AM: The Hidden Shift Change Inside PH Integrated Resorts</h3>
+          <p class="card-dek">When the high rollers leave and the floor lights dim, a different kind of labor begins. An on-the-ground investigation into the workforce that powers Entertainment City around the clock.</p>
+          <p class="card-meta">May 25, 2026 &middot; 18 min read &middot; Score 10/10</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- MORE STORIES -->
+  <section class="mb-section" id="more-stories" aria-label="More stories">
+    <div class="section-wrap">
+      <h2 class="section-title">More Stories</h2>
+      <div class="card-grid">
+
+        <a href="/articles/okada-play-commercial-launch.html" class="card">
+          <div class="card-img">
+            <img src="/hero/okada-play-commercial-launch-philweb-tiger-resort-2026.png"
+                 alt="Okada Play digital gaming platform launch"
+                 width="640" height="360" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="tag tag-news">News</span>
+            <h3>Okada Play Goes Live: PhilWeb &amp; Tiger Resort Launch Digital Gaming Platform</h3>
+            <p class="card-dek">PhilWeb and Tiger Resort launch Okada Play, a new digital gaming platform bridging the gap between integrated resort floors and online accessibility.</p>
+            <p class="card-meta">May 20, 2026 &middot; Score 8/10</p>
+          </div>
+        </a>
+
+        <a href="/articles/altenar-arenaplus-sportsbook.html" class="card">
+          <div class="card-img">
+            <img src="/hero/altenar-digiplus-arenaplus-sportsbook-philippines-2026.png"
+                 alt="Altenar and DigiPlus ArenaPlus sportsbook partnership"
+                 width="640" height="360" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="tag tag-news">News</span>
+            <h3>Altenar Powers DigiPlus ArenaPlus Sportsbook in the Philippines</h3>
+            <p class="card-dek">Malta-based sportsbook technology provider Altenar partners with DigiPlus to power the ArenaPlus sports betting platform, expanding digital sports wagering in the Philippine market.</p>
+            <p class="card-meta">May 21, 2026 &middot; Score 8/10</p>
+          </div>
+        </a>
+
+        <a href="/articles/philippine-ggr-falls-q1-2026-pagcor.html" class="card">
+          <div class="card-img">
+            <img src="/hero/philippine-ggr-falls-q1-2026-pagcor.png"
+                 alt="Philippine GGR data visualization for Q1 2026"
+                 width="640" height="360" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="tag tag-news">News</span>
+            <h3>Philippine GGR Falls 15.8% to $1.42bn in Q1 2026</h3>
+            <p class="card-dek">Gross gaming revenue across the Philippine gaming sector dropped 15.8% year-on-year to $1.42 billion in the first quarter of 2026, raising questions about market trajectory.</p>
+            <p class="card-meta">May 18, 2026 &middot; Score 9/10</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

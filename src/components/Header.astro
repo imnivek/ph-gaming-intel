@@ -1,0 +1,33 @@
+---
+interface Props {
+  activePage?: string;
+}
+const { activePage = '' } = Astro.props;
+---
+
+<div class="rg-banner">
+  18+ only. If you or someone you know has a gambling problem, contact PAGCOR's responsible gaming hotline.
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="logo">PH Gaming <span>Intel</span></a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-pills">
+        <li><a href="/#latest-news" class:list={[{ active: activePage === 'news' }]}>News</a></li>
+        <li><a href="/#analysis-guides" class:list={[{ active: activePage === 'analysis' }]}>Analysis</a></li>
+        <li><a href="#" title="Coming soon">Data Tools</a></li>
+        <li><a href="#" title="Coming soon">Regulation</a></li>
+        <li><a href="#" title="Coming soon">POGO Tracker</a></li>
+        <li><a href="#" title="Coming soon">About</a></li>
+      </ul>
+    </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</header>
