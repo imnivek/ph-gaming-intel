@@ -1,0 +1,34 @@
+name: IndexNow ping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/data/articles.ts'
+      - 'src/pages/articles/**'
+      - 'src/pages/index.astro'
+  workflow_dispatch:
+
+# Wait for Cloudflare Pages to finish deploying before pinging IndexNow,
+# then submit the sitemap URLs to Bing/Yandex/Seznam for immediate crawl.
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Wait for Cloudflare Pages deploy
+        run: |
+          # Poll the sitemap until it reflects the new commit (max 5 min).
+          # Cloudflare Pages typically deploys in 60-120 seconds.
+          for i in {1..30}; do
+            if curl -sf https://phgamingintel.com/sitemap.xml >/dev/null; then
+              echo "Sitemap reachable, proceeding."
+              break
+            fi
+            echo "Attempt $i: sitemap not yet reachable, waiting 10s..."
+            sleep 10
+          done
+
+      - name: Submit sitemap URLs to IndexNow
+        run: node scripts/indexnow-ping.mjs
