@@ -273,6 +273,41 @@ body {
 .article-content {
   max-width: var(--content-w); margin: 0 auto; padding: 0 24px 80px;
 }
+
+/* Key Takeaways — AI-citation optimized summary block (Speakable target) */
+.article-tldr {
+  max-width: var(--content-w); margin: 32px auto 48px; padding: 24px 28px;
+  background: linear-gradient(180deg, rgba(196,163,90,.10), rgba(196,163,90,.04));
+  border-left: 4px solid var(--gold); border-radius: 4px;
+}
+.article-tldr h2 {
+  font-family: var(--font-ui); font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--dark);
+  margin: 0 0 16px;
+}
+.article-tldr ul { list-style: none; margin: 0; padding: 0; }
+.article-tldr li {
+  position: relative; padding-left: 20px; margin-bottom: 12px;
+  font-size: 16px; line-height: 1.6; color: var(--dark);
+}
+.article-tldr li::before {
+  content: "▸"; position: absolute; left: 0; top: 0;
+  color: var(--gold); font-size: 14px;
+}
+.article-tldr li:last-child { margin-bottom: 0; }
+
+.article-tags {
+  margin: 48px 0 0; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.tag-topic {
+  background: #f5f0e8; color: #555; border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 4px;
+  font-size: 11px; font-family: var(--font-ui);
+  text-transform: uppercase; letter-spacing: .5px; font-weight: 600;
+}
+
 .article-content h2 {
   font-family: var(--font-head); font-size: 26px; font-weight: 800;
   color: var(--dark); margin: 56px 0 20px; line-height: 1.2;

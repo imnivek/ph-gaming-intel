@@ -1,0 +1,28 @@
+---
+import type { ArticleMeta } from '../data/articles';
+
+interface Props {
+  articles: ArticleMeta[];
+}
+
+const { articles } = Astro.props;
+---
+
+<div class="card-grid">
+  {articles.map((a) => (
+    <a href={`/articles/${a.slug}.html`} class="card">
+      <div class="card-img">
+        <img src={a.heroImage} alt={a.title} width="640" height="360" loading="lazy" />
+      </div>
+      <div class="card-body">
+        <span class={`tag tag-${a.category.toLowerCase()}`}>{a.category}</span>
+        <h3>{a.title}</h3>
+        <p class="card-dek">{a.description}</p>
+        <p class="card-meta">
+          {new Date(a.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          &middot; {a.readTime}
+        </p>
+      </div>
+    </a>
+  ))}
+</div>

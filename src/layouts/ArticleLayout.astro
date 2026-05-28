@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { findArticle } from '../data/articles';
 
 interface Props {
   title: string;
@@ -35,6 +36,12 @@ const siteUrl = 'https://phgamingintel.com';
 const articleUrl = new URL(Astro.url.pathname, siteUrl).href;
 const tagClass = `tag-${category.toLowerCase()}`;
 
+// Pull the registry entry (for tldr + tags) by deriving slug from the URL.
+const slug = Astro.url.pathname.replace(/^\/articles\//, '').replace(/\.html?$/, '');
+const meta = findArticle(slug);
+const tldr = meta?.tldr ?? [];
+const tags = meta?.tags ?? [];
+
 const articleJsonLd = {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
@@ -54,7 +61,15 @@ const articleJsonLd = {
     "name": "PH Gaming Intel",
     "logo": { "@type": "ImageObject", "url": `${siteUrl}/logo.png` }
   },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": articleUrl }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": articleUrl },
+  ...(tldr.length > 0 && {
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".article-tldr", ".article-header h1"]
+    }
+  }),
+  ...(tags.length > 0 && { "keywords": tags.join(', ') }),
+  "articleSection": category
 };
 
 const faqJsonLd = faqItems.length > 0 ? {
@@ -93,6 +108,7 @@ const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
     <meta property="article:published_time" content={new Date(publishDate).toISOString()}>
     <meta property="article:author" content={author}>
     <meta property="article:section" content={category}>
+    {tags.map(t => <meta property="article:tag" content={t}>)}
     {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
   </Fragment>
@@ -107,7 +123,7 @@ const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
     <h1>{title}</h1>
     <p class="dek">{description}</p>
     <div class="article-byline">
-      <div class="author-name">{author}, {authorTitle}</div>
+      <div class="author-name"><a href={`/author/vivian-yu`} style="color: inherit; text-decoration: none;">{author}</a>, {authorTitle}</div>
       <span>|</span>
       <time datetime={publishDate}>{formattedDate}</time>
       <span>|</span>
@@ -121,7 +137,22 @@ const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
     </div>
   </div>
 
+  {tldr.length > 0 && (
+    <aside class="article-tldr" aria-label="Key takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        {tldr.map(t => <li>{t}</li>)}
+      </ul>
+    </aside>
+  )}
+
   <article class="article-content">
     <slot />
+
+    {tags.length > 0 && (
+      <div class="article-tags" aria-label="Topic tags">
+        {tags.map(t => <span class="tag tag-topic">{t}</span>)}
+      </div>
+    )}
   </article>
 </BaseLayout>

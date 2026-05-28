@@ -14,12 +14,12 @@ const { activePage = '' } = Astro.props;
     <a href="/" class="logo">PH Gaming <span>Intel</span></a>
     <nav aria-label="Main navigation">
       <ul class="nav-pills">
-        <li><a href="/#latest-news" class:list={[{ active: activePage === 'news' }]}>News</a></li>
-        <li><a href="/#analysis-guides" class:list={[{ active: activePage === 'analysis' }]}>Analysis</a></li>
-        <li><a href="#" title="Coming soon">Data Tools</a></li>
-        <li><a href="#" title="Coming soon">Regulation</a></li>
-        <li><a href="#" title="Coming soon">POGO Tracker</a></li>
-        <li><a href="#" title="Coming soon">About</a></li>
+        <li><a href="/news" class:list={[{ active: activePage === 'news' }]}>News</a></li>
+        <li><a href="/analysis" class:list={[{ active: activePage === 'analysis' }]}>Analysis</a></li>
+        <li><a href="/longreads" class:list={[{ active: activePage === 'longreads' }]}>Longreads</a></li>
+        <li><a href="/regulation" class:list={[{ active: activePage === 'regulation' }]}>Regulation</a></li>
+        <li><a href="/pogo-tracker" class:list={[{ active: activePage === 'pogo-tracker' }]}>POGO Tracker</a></li>
+        <li><a href="/guide" class:list={[{ active: activePage === 'guide' }]}>Guides</a></li>
       </ul>
     </nav>
     <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">

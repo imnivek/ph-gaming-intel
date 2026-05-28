@@ -29,3 +29,4 @@ User-agent: Bytespider
 Allow: /
 
 Sitemap: https://phgamingintel.com/sitemap.xml
+Sitemap: https://phgamingintel.com/news-sitemap.xml
