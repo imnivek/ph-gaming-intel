@@ -52,6 +52,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteU
   <meta name="twitter:image" content={ogImageUrl}>
 
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="alternate" type="application/rss+xml" title="PH Gaming Intel — Latest Articles" href="/rss.xml">
   <link rel="canonical" href={canonicalUrl}>
 
   {jsonLd && (
