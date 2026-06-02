@@ -1,0 +1,280 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+---
+
+<ArticleLayout
+  title="Football Betting Odds Explained: How to Read World Cup Markets Without Fooling Yourself"
+  description="Decimal, fractional, and American odds, implied probability, and the bookmaker's margin — explained plainly, using World Cup examples. The goal is not to help you win. It is to help you understand exactly what a sportsbook is offering and why the house edge means the odds are never a fair coin."
+  heroImage="/hero/football-betting-odds-explained-world-cup-2026.png"
+  heroAlt="Explainer on how to read football betting odds for the 2026 World Cup"
+  category="Guide"
+  author="Vivian Yu"
+  publishDate="2026-06-02"
+  readTime="11 min read"
+  breadcrumbCategory="Sports Betting"
+  faqItems={[
+    { question: "What do decimal betting odds mean?", answer: "Decimal odds show the total return per unit staked, including your stake. Odds of 2.50 mean a PHP 100 bet returns PHP 250 total (PHP 150 profit plus your PHP 100 back) if it wins. To convert decimal odds to implied probability, divide 1 by the odds: 1 / 2.50 = 0.40, or 40 percent. Decimal is the most common format on Philippine and international sportsbooks because the math is the simplest." },
+    { question: "How do I calculate implied probability from odds?", answer: "For decimal odds, implied probability equals 1 divided by the odds, expressed as a percentage. Odds of 1.50 imply 1 / 1.50 = 66.7 percent; odds of 4.00 imply 1 / 4.00 = 25 percent. Implied probability is what the odds say about an outcome's likelihood — but the bookmaker builds in a margin, so the implied probabilities across all outcomes add up to more than 100 percent." },
+    { question: "What is the bookmaker's margin or overround?", answer: "The margin (also called the overround or vig) is the built-in edge a sportsbook adds by setting odds so the implied probabilities of all outcomes sum to more than 100 percent. If a match's three outcomes imply 105 percent total, the extra 5 points are the operator's theoretical margin. It is why, over time and across many bets, the house has a mathematical advantage regardless of individual results." },
+    { question: "Do better odds mean a better chance of winning?", answer: "No. Odds reflect implied probability and the bookmaker's margin, not a guarantee. Longer odds (a bigger potential payout) correspond to a lower implied probability of the outcome happening. Shorter odds mean a higher implied probability but a smaller payout. No odds format and no comparison shopping changes the fact that every bet carries a house edge." },
+  ]}
+>
+
+  <p>During the World Cup, you will see odds everywhere — on sportsbook apps, in promotions, quoted by friends. Most explanations of how they work are written by sites trying to get you to bet more. This one is not. The purpose here is narrow and honest: to let you read a betting line accurately, understand what it is really telling you, and recognize the house edge baked into every number.</p>
+
+  <p>If you understand odds properly, one conclusion becomes unavoidable: the odds are never a fair coin. They are a price, set by an operator that builds in a margin. Knowing that is the most useful thing this guide can give you.</p>
+
+  <!-- STAT BOX -->
+  <div class="stat-box">
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Odds Formats You'll See</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1 ÷ odds</div>
+      <div class="stat-label">Implied Probability Formula</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">&gt;100%</div>
+      <div class="stat-label">What Outcome Probabilities Always Sum To</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">House</div>
+      <div class="stat-label">Who the Margin Favors</div>
+    </div>
+  </div>
+
+  <h2>The three odds formats</h2>
+
+  <p>The same bet can be displayed three ways. They all describe the identical payout — only the notation differs. Philippine and international sportsbooks most commonly use decimal.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Format</th>
+        <th>Example</th>
+        <th>What It Means</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Decimal</td>
+        <td>2.50</td>
+        <td>Total return per unit staked, including the stake. PHP 100 returns PHP 250.</td>
+      </tr>
+      <tr>
+        <td>Fractional</td>
+        <td>3/2</td>
+        <td>Profit relative to stake. PHP 100 wins PHP 150 profit (plus stake back).</td>
+      </tr>
+      <tr>
+        <td>American</td>
+        <td>+150</td>
+        <td>Profit on a 100 stake for positive numbers. +150 means PHP 100 wins PHP 150.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>All three of those examples are the same bet. Decimal 2.50, fractional 3/2, and American +150 pay identically. If you can read decimal, you can read any of them — and decimal is what you will mostly see on PAGCOR-licensed platforms.</p>
+
+  <h2>Decimal odds: the only math you need</h2>
+
+  <p>Decimal odds answer one question: for every peso you stake, how much comes back if you win? Multiply your stake by the decimal odds to get your total return (your stake included).</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Stake</th>
+        <th>Decimal Odds</th>
+        <th>Total Return</th>
+        <th>Profit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>PHP 100</td>
+        <td>1.50</td>
+        <td>PHP 150</td>
+        <td>PHP 50</td>
+      </tr>
+      <tr>
+        <td>PHP 100</td>
+        <td>2.00</td>
+        <td>PHP 200</td>
+        <td>PHP 100</td>
+      </tr>
+      <tr>
+        <td>PHP 100</td>
+        <td>4.00</td>
+        <td>PHP 400</td>
+        <td>PHP 300</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Odds of 2.00 are the break-even line often called "evens" — you double your money on a win. Anything below 2.00 is a favorite (smaller payout, higher implied chance); anything above is an underdog (bigger payout, lower implied chance).</p>
+
+  <h2>Implied probability: what the odds are really saying</h2>
+
+  <p>This is the concept that separates someone who understands betting from someone who is simply hoping. Every set of odds translates directly into an <strong>implied probability</strong> — the likelihood the sportsbook's price assigns to that outcome. For decimal odds, the formula is simple:</p>
+
+  <div class="key-takeaway">
+    <h4>The One Formula That Matters</h4>
+    <ul>
+      <li><strong>Implied probability = 1 ÷ decimal odds</strong></li>
+      <li>Odds of 1.50 → 1 ÷ 1.50 = 66.7 percent</li>
+      <li>Odds of 2.00 → 1 ÷ 2.00 = 50 percent</li>
+      <li>Odds of 4.00 → 1 ÷ 4.00 = 25 percent</li>
+    </ul>
+  </div>
+
+  <p>So if a tournament favorite is priced at 1.50 to win a group-stage match, the sportsbook is implying a roughly 67 percent chance. A bet is only "good value" in the long run if you genuinely believe the true probability is higher than the implied one — and the uncomfortable truth is that the people setting the odds do this professionally, with more data than you have.</p>
+
+  <h2>The margin: why the odds are never fair</h2>
+
+  <p>Here is the part the promotions never explain. Add up the implied probabilities of every possible outcome in a match, and they sum to <em>more</em> than 100 percent. That excess is the bookmaker's margin — also called the overround or the vig.</p>
+
+  <p>Take a simplified three-way football market (home win, draw, away win):</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Outcome</th>
+        <th>Decimal Odds</th>
+        <th>Implied Probability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Home win</td>
+        <td>2.10</td>
+        <td>47.6%</td>
+      </tr>
+      <tr>
+        <td>Draw</td>
+        <td>3.40</td>
+        <td>29.4%</td>
+      </tr>
+      <tr>
+        <td>Away win</td>
+        <td>3.60</td>
+        <td>27.8%</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td>—</td>
+        <td><strong>104.8%</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>A fair market would sum to exactly 100 percent. This one sums to 104.8 percent. That extra 4.8 points is the operator's theoretical margin — the structural edge that, across thousands of bets, tilts the math toward the house regardless of who wins any single match. It is the sports-betting equivalent of the casino's house edge, and it does not go away.</p>
+
+  <div class="pull-quote">
+    <p>"You are not betting against the other team. You are betting against a price that has been engineered to take a cut no matter the result. Understanding the margin is understanding why 'the bookies always win' is not a saying — it is arithmetic."</p>
+    <cite>PH Gaming Intel</cite>
+  </div>
+
+  <h2>Common World Cup markets, briefly</h2>
+
+  <p>The expanded 48-team, 104-match tournament will surface a wide range of markets on licensed sportsbooks. The most common:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Market</th>
+        <th>What You're Predicting</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Match result (1X2)</td>
+        <td>Home win, draw, or away win</td>
+      </tr>
+      <tr>
+        <td>Outright winner</td>
+        <td>The tournament champion</td>
+      </tr>
+      <tr>
+        <td>Over/under goals</td>
+        <td>Total goals above or below a line (e.g. 2.5)</td>
+      </tr>
+      <tr>
+        <td>Both teams to score</td>
+        <td>Yes or no</td>
+      </tr>
+      <tr>
+        <td>Handicap</td>
+        <td>One team given a goal head start or deficit</td>
+      </tr>
+      <tr>
+        <td>Live / in-play</td>
+        <td>Bets during the match at constantly shifting odds</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Each of these carries its own margin. The more exotic the market, the higher the margin tends to be — accumulators and "build-a-bet" combinations stack the operator's edge across every leg, which is why their advertised payouts look large.</p>
+
+  <h2>What understanding odds does not give you</h2>
+
+  <p>Reading odds fluently makes you a more informed bettor. It does not make you a winning one. No format conversion, no implied-probability calculation, and no line shopping removes the house margin. The expected value of casual sports betting, over time, is negative by design. That is not a flaw in the system — it is the system.</p>
+
+  <p>The practical use of this knowledge is defensive: it lets you see exactly what you are paying for, recognize when a market's margin is unusually steep, and treat any stake as the price of entertainment rather than an investment. If you bet on the World Cup, do it on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>, with a limit set in advance, and with no illusion that the numbers are on your side.</p>
+
+  <div class="key-takeaway">
+    <h4>Key Takeaway</h4>
+    <ul>
+      <li>Decimal odds × stake = total return. Decimal is the format you'll mostly see; the other two say the same thing differently.</li>
+      <li>Implied probability = 1 ÷ decimal odds. It is what the price says about an outcome's likelihood.</li>
+      <li>The implied probabilities of all outcomes always sum to more than 100 percent — that excess is the bookmaker's margin.</li>
+      <li>Better odds mean a bigger payout and a lower implied chance, never a better guarantee.</li>
+      <li>Understanding odds is defensive knowledge: it shows you the house edge; it does not remove it.</li>
+    </ul>
+  </div>
+
+  <!-- FAQ SECTION -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">What do decimal betting odds mean?</div>
+      <div class="faq-a">Decimal odds show the total return per unit staked, including your stake. Odds of 2.50 mean a PHP 100 bet returns PHP 250 total (PHP 150 profit plus your PHP 100 back) if it wins. To convert decimal odds to implied probability, divide 1 by the odds: 1 / 2.50 = 0.40, or 40 percent. Decimal is the most common format on Philippine and international sportsbooks because the math is the simplest.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I calculate implied probability from odds?</div>
+      <div class="faq-a">For decimal odds, implied probability equals 1 divided by the odds, expressed as a percentage. Odds of 1.50 imply 1 / 1.50 = 66.7 percent; odds of 4.00 imply 1 / 4.00 = 25 percent. Implied probability is what the odds say about an outcome's likelihood — but the bookmaker builds in a margin, so the implied probabilities across all outcomes add up to more than 100 percent.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What is the bookmaker's margin or overround?</div>
+      <div class="faq-a">The margin (also called the overround or vig) is the built-in edge a sportsbook adds by setting odds so the implied probabilities of all outcomes sum to more than 100 percent. If a match's three outcomes imply 105 percent total, the extra 5 points are the operator's theoretical margin. It is why, over time and across many bets, the house has a mathematical advantage regardless of individual results.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do better odds mean a better chance of winning?</div>
+      <div class="faq-a">No. Odds reflect implied probability and the bookmaker's margin, not a guarantee. Longer odds (a bigger potential payout) correspond to a lower implied probability of the outcome happening. Shorter odds mean a higher implied probability but a smaller payout. No odds format and no comparison shopping changes the fact that every bet carries a house edge.</div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="source-list">
+    <h3>Sources</h3>
+    <ul>
+      <li>PH Gaming Intel methodology note on betting-odds arithmetic and bookmaker margin</li>
+      <li>PAGCOR Responsible Gaming Program guidance on understanding gaming odds and house edge</li>
+      <li>FIFA, "FIFA World Cup 2026 Match Schedule and Format," 2026</li>
+    </ul>
+  </div>
+
+  <!-- AUTHOR BIO -->
+  <div class="author-bio">
+    <div class="avatar">VY</div>
+    <div class="bio-text">
+      <h4>Vivian Yu, Editor-in-Chief</h4>
+      <p>Vivian covers gaming regulation and policy across the Philippines and Southeast Asia. She previously reported on fintech and digital economy for BusinessWorld and has covered the POGO-to-PIGO transition since 2024. Based in Manila.</p>
+    </div>
+  </div>
+
+</ArticleLayout>
