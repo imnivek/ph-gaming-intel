@@ -25,7 +25,11 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://phgamingintel.com';
-const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
+// build.format:'file' yields pathnames like /articles/foo.html and /index.html,
+// but Cloudflare serves (200) the extensionless form and 307-redirects the .html.
+// Normalise so the canonical points at the final 200 URL, never a redirect.
+const cleanPath = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+const canonicalUrl = canonical || new URL(cleanPath, siteUrl).href;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
 ---
 

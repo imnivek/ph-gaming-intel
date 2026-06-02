@@ -617,7 +617,9 @@ export const articles: ArticleMeta[] = [
 ];
 
 export function articleUrl(slug: string): string {
-  return `${SITE.url}/articles/${slug}.html`;
+  // Cloudflare serves pages at extensionless URLs and 307-redirects the .html form.
+  // Emit the final 200 URL so sitemap/RSS/canonical never point at a redirect.
+  return `${SITE.url}/articles/${slug}`;
 }
 
 export function articlesByCategory(category: ArticleCategory): ArticleMeta[] {

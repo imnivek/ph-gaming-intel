@@ -33,7 +33,8 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://phgamingintel.com';
-const articleUrl = new URL(Astro.url.pathname, siteUrl).href;
+// Strip the .html so the JSON-LD @id / breadcrumb match the canonical (the 200 URL).
+const articleUrl = new URL(Astro.url.pathname.replace(/\.html$/, ''), siteUrl).href;
 const tagClass = `tag-${category.toLowerCase()}`;
 
 // Pull the registry entry (for tldr + tags) by deriving slug from the URL.
