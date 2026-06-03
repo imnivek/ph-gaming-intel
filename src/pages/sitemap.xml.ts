@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { articles, articleUrl, SITE } from '../data/articles';
+import { articles, articleUrl, CATEGORIES, SITE } from '../data/articles';
 
 const priorityByCategory: Record<string, string> = {
   Longread: '0.9',
@@ -37,6 +37,14 @@ export const GET: APIRoute = () => {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`,
+    ...CATEGORIES.map(
+      (c) => `  <url>
+    <loc>${SITE.url}/${c.slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`,
+    ),
     ...articles.map(
       (a) => `  <url>
     <loc>${articleUrl(a.slug)}</loc>
