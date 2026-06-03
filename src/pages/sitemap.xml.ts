@@ -31,6 +31,12 @@ export const GET: APIRoute = () => {
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/betting-odds-calculator</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
     ...articles.map(
       (a) => `  <url>
     <loc>${articleUrl(a.slug)}</loc>
