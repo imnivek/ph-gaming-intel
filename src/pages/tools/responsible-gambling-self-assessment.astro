@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/responsible-gambling-self-assessment`;
+
+const questions = [
+  "Have you bet more than you could really afford to lose?",
+  "Have you needed to gamble with larger amounts of money to get the same feeling of excitement?",
+  "When you gambled, did you go back another day to try to win back the money you lost?",
+  "Have you borrowed money or sold anything to get money to gamble?",
+  "Have you felt that you might have a problem with gambling?",
+  "Has gambling caused you any health problems, including stress or anxiety?",
+  "Have people criticised your betting, or told you that you had a gambling problem — whether or not you thought it was true?",
+  "Has your gambling caused any financial problems for you or your household?",
+  "Have you felt guilty about the way you gamble, or about what happens when you gamble?",
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Responsible Gambling Self-Assessment (PGSI)",
+      "url": pageUrl,
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free, private self-assessment based on the Problem Gambling Severity Index (PGSI). Answer nine questions about the past 12 months to see your risk level and the support available in the Philippines. Educational screening, not a diagnosis.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": `${siteUrl}/tools/responsible-gambling-self-assessment` },
+        { "@type": "ListItem", "position": 3, "name": "Responsible Gambling Self-Assessment", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Responsible Gambling Self-Assessment (PGSI) — PH Gaming Intel"
+  description="A free, private self-check based on the Problem Gambling Severity Index. Answer nine questions about the past 12 months to see your risk level and the help available in the Philippines, including the National Problem Gambling Helpline. Educational screening, not a diagnosis — nothing is saved or sent."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">Responsible Gambling Self-Assessment</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>Responsible Gambling Self-Assessment</h1>
+      <p class="tool-dek">A short, private self-check based on the <strong>Problem Gambling Severity Index (PGSI)</strong> — the nine-item screen used by researchers and health services worldwide. Thinking about the <strong>past 12 months</strong>, answer honestly. This tool runs entirely in your browser: nothing you select is saved, sent, or seen by anyone. It is an educational screening, <strong>not a medical diagnosis</strong>.</p>
+    </header>
+
+    <div class="privacy-note">🔒 Private by design — all scoring happens on your device. Nothing leaves this page.</div>
+
+    <form id="pgsi-form" class="quiz">
+      {questions.map((q, i) => (
+        <fieldset class="q-card" data-q={i}>
+          <legend><span class="q-num">{i + 1}</span> {q}</legend>
+          <div class="q-options">
+            <label><input type="radio" name={`q${i}`} value="0" /> <span>Never</span></label>
+            <label><input type="radio" name={`q${i}`} value="1" /> <span>Sometimes</span></label>
+            <label><input type="radio" name={`q${i}`} value="2" /> <span>Most of the time</span></label>
+            <label><input type="radio" name={`q${i}`} value="3" /> <span>Almost always</span></label>
+          </div>
+        </fieldset>
+      ))}
+
+      <div class="quiz-actions">
+        <button type="button" id="calc-btn">See my result</button>
+        <button type="button" id="reset-btn" class="reset">Clear answers</button>
+        <p id="progress" class="progress">0 of 9 answered</p>
+      </div>
+    </form>
+
+    <div id="result" class="result-panel" hidden aria-live="polite">
+      <div class="result-score">
+        <div class="result-score-num" id="score-num">—</div>
+        <div class="result-score-of">out of 27</div>
+      </div>
+      <div class="result-band" id="result-band"></div>
+      <p class="result-text" id="result-text"></p>
+      <div class="result-help" id="result-help"></div>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>How to read this — and what it can't tell you</h3>
+      <p>The PGSI sorts responses into broad risk bands; it is a conversation-starter and a screening aid, <strong>not a clinical diagnosis</strong>. A low score is not a guarantee that gambling is harmless for you, and a high score does not mean anything is wrong with you as a person — it means the behaviour is worth paying attention to, and that support exists. Only a qualified professional can assess your situation properly. If any question made you pause, that pause is itself worth listening to.</p>
+      <p class="tool-rg">18+ only. If you choose to bet, do it on a <a href="/articles/pagcor-licensed-casinos-guide-2026.html">PAGCOR-licensed operator</a>, set a deposit limit in advance, and treat any stake as the price of entertainment. Help in the Philippines is free and confidential: the <strong>National Problem Gambling Helpline at (02) 8248-9568</strong>, and PAGCOR's <a href="/articles/responsible-betting-world-cup-2026-pagcor-self-exclusion.html">self-exclusion tools</a>. In an emergency, call 911. For mental-health crises, the National Center for Mental Health crisis line is available 24/7.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Understand the bigger picture</h3>
+      <ul>
+        <li><a href="/articles/online-gambling-addiction-crisis-32-million-filipinos-world-cup-2026">32 Million Filipinos, One Tournament: The Addiction Crisis the World Cup Walks Into</a></li>
+        <li><a href="/articles/responsible-betting-world-cup-2026-pagcor-self-exclusion.html">Responsible Betting: Deposit Limits, Self-Exclusion, and the PAGCOR Helpline</a></li>
+        <li><a href="/articles/pagcor-npgh-helpline-launch-2026.html">PAGCOR Launches 24/7 National Problem Gambling Helpline</a></li>
+        <li><a href="/tools/betting-odds-calculator">Free Tool: Betting Odds &amp; Implied Probability Calculator &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 20px; }
+
+    .privacy-note { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--navy); background: var(--cream); border: 1px solid var(--border); border-radius: 9px; padding: 11px 16px; margin-bottom: 28px; }
+
+    .q-card { border: 1px solid var(--border); border-radius: 13px; padding: 20px 22px; margin: 0 0 16px; background: #fff; box-shadow: 0 2px 12px rgba(13,27,42,.04); }
+    .q-card legend { font-family: var(--font-ui); font-size: 16px; font-weight: 600; color: var(--dark); line-height: 1.5; padding: 0; display: flex; gap: 10px; align-items: baseline; }
+    .q-num { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 13px; font-weight: 700; }
+    .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+    .q-options label { display: flex; align-items: center; gap: 9px; font-family: var(--font-ui); font-size: 14px; font-weight: 500; color: var(--text); border: 2px solid var(--border); border-radius: 9px; padding: 11px 14px; cursor: pointer; background: var(--cream); transition: border-color .15s, background .15s; }
+    .q-options label:hover { border-color: var(--gold); }
+    .q-options input { accent-color: var(--brick); width: 17px; height: 17px; flex: 0 0 auto; }
+    .q-options label:has(input:checked) { border-color: var(--brick); background: #fff; color: var(--dark); font-weight: 600; }
+
+    .quiz-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 24px; }
+    #calc-btn { font-family: var(--font-ui); font-size: 15px; font-weight: 700; letter-spacing: .3px; color: var(--dark); background: var(--gold); border: none; border-radius: 9px; padding: 14px 30px; cursor: pointer; transition: filter .15s; }
+    #calc-btn:hover { filter: brightness(1.05); }
+    .reset { font-family: var(--font-ui); font-size: 14px; font-weight: 600; color: var(--text-light); background: none; border: none; cursor: pointer; text-decoration: underline; }
+    .progress { font-family: var(--font-ui); font-size: 13px; color: var(--text-light); margin: 0 0 0 auto; }
+
+    .result-panel { border: 2px solid var(--border); border-radius: 14px; padding: 30px 28px; margin: 28px 0; background: #fff; }
+    .result-panel[data-level="0"] { border-color: #2e7d52; }
+    .result-panel[data-level="1"] { border-color: var(--gold); }
+    .result-panel[data-level="2"] { border-color: #c77d2e; }
+    .result-panel[data-level="3"] { border-color: var(--brick); }
+    .result-score { display: flex; align-items: baseline; gap: 10px; }
+    .result-score-num { font-family: var(--font-ui); font-size: 52px; font-weight: 800; line-height: 1; color: var(--navy); }
+    .result-score-of { font-family: var(--font-ui); font-size: 15px; font-weight: 600; color: var(--text-light); }
+    .result-band { font-family: var(--font-ui); font-size: 20px; font-weight: 800; margin: 14px 0 10px; }
+    .result-panel[data-level="0"] .result-band { color: #2e7d52; }
+    .result-panel[data-level="1"] .result-band { color: #9a7b25; }
+    .result-panel[data-level="2"] .result-band { color: #c77d2e; }
+    .result-panel[data-level="3"] .result-band { color: var(--brick); }
+    .result-text { font-family: var(--font-body); font-size: 17px; line-height: 1.6; color: var(--text); margin: 0 0 18px; }
+    .result-help { font-family: var(--font-ui); font-size: 15px; line-height: 1.65; color: var(--dark); background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 16px 20px; }
+    .result-help strong { color: var(--brick); }
+    .result-help a { color: var(--brick); font-weight: 600; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin: 28px 0; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+      .q-options { grid-template-columns: 1fr; }
+      .progress { margin: 4px 0 0; width: 100%; }
+    }
+  </style>
+
+  <script is:inline define:vars={{ total: questions.length }}>
+    (function () {
+      var form = document.getElementById('pgsi-form');
+      var calcBtn = document.getElementById('calc-btn');
+      var resetBtn = document.getElementById('reset-btn');
+      var progress = document.getElementById('progress');
+      var panel = document.getElementById('result');
+      var scoreNum = document.getElementById('score-num');
+      var bandEl = document.getElementById('result-band');
+      var textEl = document.getElementById('result-text');
+      var helpEl = document.getElementById('result-help');
+
+      function answeredCount() {
+        var n = 0;
+        for (var i = 0; i < total; i++) {
+          if (form.querySelector('input[name="q' + i + '"]:checked')) n++;
+        }
+        return n;
+      }
+
+      function updateProgress() {
+        progress.textContent = answeredCount() + ' of ' + total + ' answered';
+      }
+
+      var bands = [
+        {
+          level: 0,
+          name: 'No measurable risk',
+          text: "Your answers point to little or no measurable problem-gambling risk over the past year. That is a good place to be — and the simplest way to keep it that way is to keep gambling optional: a set budget you can comfortably lose, a time limit, and no chasing losses.",
+          help: "Keep it that way: decide your limit before you play, never bet money meant for something else, and stop when the budget is gone. If you ever want to step back, the <a href='/articles/responsible-betting-world-cup-2026-pagcor-self-exclusion.html'>PAGCOR self-exclusion tools</a> are there."
+        },
+        {
+          level: 1,
+          name: 'Low level of risk',
+          text: "Your answers suggest a low level of risk with few or no identified consequences so far. This is the stage where small habits matter most — the easiest time to set guardrails is before you feel you need them.",
+          help: "Set a firm deposit limit, avoid betting to win back losses, and check in with yourself if the numbers start creeping up. Free, confidential help is always available at the <strong>National Problem Gambling Helpline: (02) 8248-9568</strong>."
+        },
+        {
+          level: 2,
+          name: 'Moderate level of risk',
+          text: "Your answers indicate a moderate level of risk — a level at which some negative consequences may already be appearing. This does not mean you have an addiction, but it is a clear signal worth acting on now rather than later, while change is easier.",
+          help: "Consider talking to someone. The <strong>National Problem Gambling Helpline at (02) 8248-9568</strong> is free and confidential, and PAGCOR's <a href='/articles/responsible-betting-world-cup-2026-pagcor-self-exclusion.html'>self-exclusion program</a> lets you block your own access to licensed platforms. Setting a strict deposit limit today is a concrete first step."
+        },
+        {
+          level: 3,
+          name: 'High level of risk',
+          text: "Your answers point to a high level of risk, with a likelihood that gambling is already causing consequences in your life. Please read this as encouragement, not judgement: people move out of this zone all the time, and reaching out is the hardest and most effective step.",
+          help: "Please consider reaching out today. The <strong>National Problem Gambling Helpline at (02) 8248-9568</strong> is free, confidential, and available to talk things through. You can block your own access through PAGCOR's <a href='/articles/responsible-betting-world-cup-2026-pagcor-self-exclusion.html'>self-exclusion program</a>. If you are in crisis or having thoughts of harming yourself, call <strong>911</strong> or the National Center for Mental Health 24/7 crisis line immediately. You do not have to handle this alone."
+        }
+      ];
+
+      function bandFor(score) {
+        if (score === 0) return bands[0];
+        if (score <= 2) return bands[1];
+        if (score <= 7) return bands[2];
+        return bands[3];
+      }
+
+      function calculate() {
+        if (answeredCount() < total) {
+          progress.textContent = 'Please answer all ' + total + ' questions first (' + answeredCount() + ' of ' + total + ' done).';
+          var firstBlank = null;
+          for (var i = 0; i < total; i++) {
+            if (!form.querySelector('input[name="q' + i + '"]:checked')) { firstBlank = i; break; }
+          }
+          if (firstBlank !== null) {
+            var card = form.querySelector('.q-card[data-q="' + firstBlank + '"]');
+            if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+        var score = 0;
+        for (var j = 0; j < total; j++) {
+          var sel = form.querySelector('input[name="q' + j + '"]:checked');
+          score += parseInt(sel.value, 10);
+        }
+        var b = bandFor(score);
+        scoreNum.textContent = score;
+        bandEl.textContent = b.name;
+        textEl.textContent = b.text;
+        helpEl.innerHTML = b.help;
+        panel.setAttribute('data-level', b.level);
+        panel.hidden = false;
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function reset() {
+        form.reset();
+        panel.hidden = true;
+        updateProgress();
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      form.addEventListener('change', updateProgress);
+      calcBtn.addEventListener('click', calculate);
+      resetBtn.addEventListener('click', reset);
+      updateProgress();
+    })();
+  </script>
+
+</BaseLayout>

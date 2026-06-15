@@ -37,6 +37,12 @@ export const GET: APIRoute = () => {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/responsible-gambling-self-assessment</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
     ...CATEGORIES.map(
       (c) => `  <url>
     <loc>${SITE.url}/${c.slug}</loc>
