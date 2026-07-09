@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/parlay-margin-calculator`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Parlay & Accumulator Margin Calculator",
+      "url": pageUrl,
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free educational calculator for parlays and accumulators: enter each leg's decimal odds to see the combined price, the parlay's implied probability, the payout on a stake, and how the bookmaker's margin compounds with every added leg.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": pageUrl },
+        { "@type": "ListItem", "position": 3, "name": "Parlay Margin Calculator", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Parlay & Accumulator Margin Calculator — PH Gaming Intel"
+  description="A free educational tool: enter each leg's decimal odds to see a parlay's combined price, implied probability, and payout — and see how the bookmaker's margin compounds with every leg you add. Built to show why an accumulator is the house's best product, not to help you win one."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">Parlay Margin Calculator</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>Parlay &amp; Accumulator Margin Calculator</h1>
+      <p class="tool-dek">A parlay (accumulator) multiplies the odds of several legs into one big price — and the payout <em>and</em> the improbability both multiply together. It also multiplies something less visible: the <strong>house margin</strong>, which compounds with every leg. Enter your legs below to see the combined price, the real chance it implies, and how the edge stacks up. Educational only — this does not predict results or improve a parlay's chances.</p>
+    </header>
+
+    <!-- CALCULATOR 1: COMBINED PRICE + PAYOUT -->
+    <div class="calc-card">
+      <h2>1. Combined price &amp; payout</h2>
+      <p class="calc-note">Enter the decimal odds for each leg (leave a leg at 0 or blank to skip it). Stake is in PHP.</p>
+
+      <div class="calc-inputs calc-inputs-3">
+        <label><span>Leg 1 odds</span><input type="number" id="leg1" value="1.80" min="0" step="0.01" inputmode="decimal" /></label>
+        <label><span>Leg 2 odds</span><input type="number" id="leg2" value="2.00" min="0" step="0.01" inputmode="decimal" /></label>
+        <label><span>Leg 3 odds</span><input type="number" id="leg3" value="2.50" min="0" step="0.01" inputmode="decimal" /></label>
+        <label><span>Leg 4 odds</span><input type="number" id="leg4" value="0" min="0" step="0.01" inputmode="decimal" placeholder="optional" /></label>
+        <label><span>Leg 5 odds</span><input type="number" id="leg5" value="0" min="0" step="0.01" inputmode="decimal" placeholder="optional" /></label>
+        <label><span>Leg 6 odds</span><input type="number" id="leg6" value="0" min="0" step="0.01" inputmode="decimal" placeholder="optional" /></label>
+      </div>
+      <div class="calc-inputs">
+        <label><span>Stake (PHP)</span><input type="number" id="pStake" value="100" min="0" step="1" inputmode="decimal" /></label>
+        <label><span>Legs counted</span><input type="text" id="pLegs" value="—" readonly /></label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="pCombined">—</div><div class="result-label">Combined decimal odds</div></div>
+        <div class="result-item"><div class="result-num" id="pReturn">—</div><div class="result-label">Total return if all land</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="pProb">—</div><div class="result-label">Implied probability all land</div></div>
+      </div>
+      <p class="calc-formula">Combined odds = the legs multiplied together. Implied probability = 1 &divide; combined odds. One losing leg voids the whole slip, even if every other leg won.</p>
+    </div>
+
+    <!-- CALCULATOR 2: MARGIN COMPOUNDING -->
+    <div class="calc-card">
+      <h2>2. How the margin compounds</h2>
+      <p class="calc-note">Every leg carries the bookmaker's built-in margin, and on a parlay those edges stack multiplicatively. Enter a typical margin per leg to see the house's total edge grow with the number of legs you entered above.</p>
+
+      <div class="calc-inputs">
+        <label><span>Typical margin per leg (%)</span><input type="number" id="cMargin" value="5" min="0" max="30" step="0.5" inputmode="decimal" /></label>
+        <label><span>Legs in the parlay</span><input type="text" id="cLegs" value="—" readonly /></label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="cSingle">—</div><div class="result-label">House edge on a single bet</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="cParlay">—</div><div class="result-label">Compounded edge on your parlay</div></div>
+      </div>
+      <p class="calc-formula">Compounded edge = 1 &minus; (1 &minus; margin)<sup>legs</sup>. At a 5% per-leg margin, a single bet gives up ~5%, but a four-leg parlay gives up ~19% — the margin is the one thing that reliably multiplies.</p>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>Why a parlay is the house's best product</h3>
+      <p>This tool shows the arithmetic of an accumulator: the big combined price, the small real chance behind it, and the margin that compounds with every leg. It does <strong>not</strong> tell you which legs to pick, predict any result, or make a parlay more likely to land — nothing can. The honest reading is that stacking legs multiplies the payout, the improbability, and the house edge all at once, which is exactly why sportsbooks promote parlays so hard. See the number for what it is before you decide it is worth a stake.</p>
+      <p class="tool-rg">18+ only. Bet only on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>, set a deposit limit in advance, and treat any stake as the price of entertainment. If gambling stops feeling optional, the <a href="/tools/responsible-gambling-self-assessment">responsible-gambling self-assessment</a> and the National Problem Gambling Helpline (02) 8248-9568 are there for that.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Learn the concepts behind the numbers</h3>
+      <ul>
+        <li><a href="/articles/world-cup-2026-parlay-accumulator-math-upset-weekend-philippines.html">The Weekend That Explains Why Parlays Are the House's Best Product</a></li>
+        <li><a href="/articles/world-cup-2026-same-game-parlay-correlation-build-a-bet-philippines.html">Build-a-Bet: Why the Same-Game Parlay Looks Generous and Prices Like a Trap</a></li>
+        <li><a href="/tools/betting-odds-calculator">Betting Odds &amp; Implied Probability Calculator</a></li>
+        <li><a href="/sports-betting">All Sports Betting coverage &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 36px; }
+
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(13,27,42,.05); }
+    .calc-card h2 { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .calc-note { font-family: var(--font-ui); font-size: 14px; line-height: 1.6; color: var(--text-light); margin: 0 0 22px; }
+
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+    .calc-inputs-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .calc-inputs label { display: flex; flex-direction: column; gap: 7px; }
+    .calc-inputs label span { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text); }
+    .calc-inputs input { font-family: var(--font-ui); font-size: 20px; font-weight: 600; color: var(--dark); padding: 12px 14px; border: 2px solid var(--border); border-radius: 9px; background: var(--cream); width: 100%; box-sizing: border-box; }
+    .calc-inputs input:focus { outline: none; border-color: var(--gold); background: #fff; }
+    .calc-inputs input[readonly] { background: #eef1f4; color: var(--text-light); }
+
+    .calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; margin-bottom: 14px; }
+    .result-item { background: var(--dark); border-radius: 11px; padding: 18px 16px; text-align: center; }
+    .result-item-hl { background: var(--brick); }
+    .result-num { font-family: var(--font-ui); font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+    .result-item-hl .result-num { color: #fff; }
+    .result-label { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: 7px; }
+
+    .calc-formula { font-family: var(--font-ui); font-size: 12.5px; color: var(--text-light); font-style: italic; margin: 6px 0 0; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin-bottom: 28px; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+      .calc-inputs, .calc-inputs-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var peso = function (n) {
+        return 'PHP ' + n.toLocaleString('en-PH', { maximumFractionDigits: 2 });
+      };
+
+      var legEls = ['leg1', 'leg2', 'leg3', 'leg4', 'leg5', 'leg6'].map(function (id) { return document.getElementById(id); });
+      var pStake = document.getElementById('pStake');
+      var pLegs = document.getElementById('pLegs');
+      var pCombined = document.getElementById('pCombined');
+      var pReturn = document.getElementById('pReturn');
+      var pProb = document.getElementById('pProb');
+      var cMargin = document.getElementById('cMargin');
+      var cLegs = document.getElementById('cLegs');
+      var cSingle = document.getElementById('cSingle');
+      var cParlay = document.getElementById('cParlay');
+
+      function countLegs() {
+        var combined = 1, n = 0;
+        for (var i = 0; i < legEls.length; i++) {
+          var v = parseFloat(legEls[i].value);
+          if (isFinite(v) && v >= 1.01) { combined *= v; n++; }
+        }
+        return { combined: combined, n: n };
+      }
+
+      function calcParlay() {
+        var r = countLegs();
+        pLegs.value = r.n ? String(r.n) : '—';
+        cLegs.value = r.n ? String(r.n) : '—';
+        if (r.n < 2) {
+          pCombined.textContent = '—'; pReturn.textContent = '—'; pProb.textContent = '—';
+        } else {
+          var s = parseFloat(pStake.value);
+          pCombined.textContent = r.combined.toFixed(2);
+          pProb.textContent = (100 / r.combined).toFixed(2) + '%';
+          pReturn.textContent = (isFinite(s) && s >= 0) ? peso(s * r.combined) : '—';
+        }
+        calcMargin(r.n);
+      }
+
+      function calcMargin(n) {
+        var m = parseFloat(cMargin.value);
+        if (!isFinite(m) || m < 0 || n < 1) {
+          cSingle.textContent = '—'; cParlay.textContent = '—';
+          return;
+        }
+        var mf = m / 100;
+        cSingle.textContent = m.toFixed(1) + '%';
+        var edge = (1 - Math.pow(1 - mf, n)) * 100;
+        cParlay.textContent = edge.toFixed(1) + '%';
+      }
+
+      legEls.forEach(function (el) { el.addEventListener('input', calcParlay); });
+      pStake.addEventListener('input', calcParlay);
+      cMargin.addEventListener('input', calcParlay);
+
+      calcParlay();
+    })();
+  </script>
+
+</BaseLayout>

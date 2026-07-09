@@ -43,6 +43,30 @@ export const GET: APIRoute = () => {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/free-bet-value-calculator</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/odds-format-converter</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/parlay-margin-calculator</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/responsible-gambling-budget-planner</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
     ...CATEGORIES.map(
       (c) => `  <url>
     <loc>${SITE.url}/${c.slug}</loc>

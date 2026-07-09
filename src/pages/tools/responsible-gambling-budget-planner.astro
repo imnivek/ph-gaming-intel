@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/responsible-gambling-budget-planner`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Responsible Gambling Budget & Limit Planner",
+      "url": pageUrl,
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free, private responsible-gambling planner that helps you set a monthly betting budget, a per-session limit, and a sensible unit size from money you can afford to lose. Runs entirely in your browser; nothing is saved or sent.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": pageUrl },
+        { "@type": "ListItem", "position": 3, "name": "Responsible Gambling Budget Planner", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Responsible Gambling Budget & Limit Planner — PH Gaming Intel"
+  description="A free, private planner to set a monthly betting budget, a per-session limit, and a sensible unit size — from money you can genuinely afford to lose. Runs entirely in your browser; nothing is saved or sent. Built to keep betting a small, fixed cost of entertainment, not a way to make money."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">Budget &amp; Limit Planner</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>Responsible Gambling Budget &amp; Limit Planner</h1>
+      <p class="tool-dek">The single most protective habit in gambling is deciding, in advance and in a calm moment, how much you are willing to lose — and then treating that number as fixed. This planner turns money you can genuinely afford to lose into a <strong>monthly budget</strong>, a <strong>per-session limit</strong>, and a sensible <strong>unit size</strong>. It runs entirely in your browser: nothing you type is saved, stored, or sent anywhere.</p>
+    </header>
+
+    <!-- PLANNER -->
+    <div class="calc-card">
+      <h2>Set your limits</h2>
+      <p class="calc-note">Use money left after all essentials, savings, and debts — never money you need. Income is optional and only used to sense-check the share of your earnings you would be risking.</p>
+
+      <div class="calc-inputs">
+        <label>
+          <span>Monthly disposable budget for entertainment (PHP)</span>
+          <input type="number" id="bpBudget" value="4000" min="0" step="100" inputmode="decimal" />
+        </label>
+        <label>
+          <span>Share of that for betting (%)</span>
+          <input type="number" id="bpShare" value="25" min="0" max="100" step="1" inputmode="decimal" />
+        </label>
+        <label>
+          <span>Betting sessions per month</span>
+          <input type="number" id="bpSessions" value="8" min="1" step="1" inputmode="decimal" />
+        </label>
+        <label>
+          <span>Monthly take-home income (PHP, optional)</span>
+          <input type="number" id="bpIncome" value="0" min="0" step="500" inputmode="decimal" placeholder="optional" />
+        </label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="bpMonthly">—</div><div class="result-label">Monthly betting budget</div></div>
+        <div class="result-item"><div class="result-num" id="bpSession">—</div><div class="result-label">Per-session limit</div></div>
+        <div class="result-item"><div class="result-num" id="bpUnit">—</div><div class="result-label">Suggested unit (1 bet)</div></div>
+      </div>
+
+      <div id="bpBanner" class="bp-banner" style="display:none;"></div>
+
+      <p class="calc-formula">Monthly betting budget = disposable budget &times; share. Per-session limit = monthly budget &divide; sessions. Suggested unit = per-session limit &divide; 10, so a single bad session cannot end the whole month. A session where you place no bet is a win for your budget, not a missed chance.</p>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>What this planner is for</h3>
+      <p>This tool is about <strong>limiting</strong> what you spend, not maximising what you might win — there is no stake size that beats the house edge, and betting is not a way to make money. Set these limits when you are calm, put the same numbers into your operator's <strong>deposit and loss limits</strong> so the platform enforces them for you, and stop when a limit is reached even if a match is still live. If you find your real spending drifting above the plan, that drift is itself the signal worth paying attention to.</p>
+      <p class="tool-rg">18+ only. Bet only on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>, which is required to offer deposit limits, time-outs and self-exclusion. To check where you stand, take the private <a href="/tools/responsible-gambling-self-assessment">responsible-gambling self-assessment</a>. The National Problem Gambling Helpline answers 24/7 at (02) 8248-9568.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Learn the concepts behind the numbers</h3>
+      <ul>
+        <li><a href="/tools/responsible-gambling-self-assessment">Responsible Gambling Self-Assessment (PGSI)</a></li>
+        <li><a href="/articles/world-cup-2026-daily-match-volume-betting-frequency-action-habit-philippines.html">Why Betting Frequency, Not Stake Size, Is How the House Wins</a></li>
+        <li><a href="/articles/responsible-betting-world-cup-2026-pagcor-self-exclusion.html">Responsible Betting: Deposit Limits, Self-Exclusion, and the PAGCOR Helpline</a></li>
+        <li><a href="/sports-betting">All Sports Betting coverage &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 36px; }
+
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(13,27,42,.05); }
+    .calc-card h2 { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .calc-note { font-family: var(--font-ui); font-size: 14px; line-height: 1.6; color: var(--text-light); margin: 0 0 22px; }
+
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+    .calc-inputs label { display: flex; flex-direction: column; gap: 7px; }
+    .calc-inputs label span { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text); }
+    .calc-inputs input { font-family: var(--font-ui); font-size: 20px; font-weight: 600; color: var(--dark); padding: 12px 14px; border: 2px solid var(--border); border-radius: 9px; background: var(--cream); width: 100%; box-sizing: border-box; }
+    .calc-inputs input:focus { outline: none; border-color: var(--gold); background: #fff; }
+
+    .calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; margin-bottom: 18px; }
+    .result-item { background: var(--dark); border-radius: 11px; padding: 18px 16px; text-align: center; }
+    .result-num { font-family: var(--font-ui); font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+    .result-label { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: 7px; }
+
+    .bp-banner { font-family: var(--font-ui); font-size: 14.5px; line-height: 1.6; border-radius: 10px; padding: 16px 18px; margin-bottom: 8px; border-left: 4px solid; }
+    .bp-ok { background: #eef5ee; border-color: #4a7c59; color: #2f5138; }
+    .bp-caution { background: #fbf3e6; border-color: var(--gold); color: #6b5518; }
+    .bp-flag { background: #f9ecea; border-color: var(--brick); color: #7a2b20; }
+
+    .calc-formula { font-family: var(--font-ui); font-size: 12.5px; color: var(--text-light); font-style: italic; margin: 6px 0 0; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin-bottom: 28px; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+      .calc-inputs { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var peso = function (n) {
+        return 'PHP ' + n.toLocaleString('en-PH', { maximumFractionDigits: 0 });
+      };
+
+      var bpBudget = document.getElementById('bpBudget');
+      var bpShare = document.getElementById('bpShare');
+      var bpSessions = document.getElementById('bpSessions');
+      var bpIncome = document.getElementById('bpIncome');
+      var bpMonthly = document.getElementById('bpMonthly');
+      var bpSession = document.getElementById('bpSession');
+      var bpUnit = document.getElementById('bpUnit');
+      var bpBanner = document.getElementById('bpBanner');
+
+      function plan() {
+        var budget = parseFloat(bpBudget.value);
+        var share = parseFloat(bpShare.value);
+        var sessions = parseFloat(bpSessions.value);
+        var income = parseFloat(bpIncome.value);
+
+        if (!isFinite(budget) || budget < 0 || !isFinite(share) || share < 0 || !isFinite(sessions) || sessions < 1) {
+          bpMonthly.textContent = '—'; bpSession.textContent = '—'; bpUnit.textContent = '—';
+          bpBanner.style.display = 'none';
+          return;
+        }
+        var monthly = budget * (share / 100);
+        var perSession = monthly / sessions;
+        var unit = perSession / 10;
+        bpMonthly.textContent = peso(monthly);
+        bpSession.textContent = peso(perSession);
+        bpUnit.textContent = peso(unit);
+
+        // caution banner: based on share of disposable budget and, if given, of income
+        var cls = 'bp-ok', msg = '';
+        var incomePct = (isFinite(income) && income > 0) ? (monthly / income) * 100 : null;
+
+        if (share > 50 || (incomePct !== null && incomePct > 3)) {
+          cls = 'bp-flag';
+          msg = 'This plan commits a large share of your money to betting';
+          if (incomePct !== null) msg += ' — about ' + incomePct.toFixed(1) + '% of your monthly income';
+          msg += '. Betting is not a source of income, and the house edge means the expected direction of this money is down. Consider a smaller share, and put the same figure into your operator’s deposit and loss limits so it is enforced for you.';
+        } else if (share > 20 || (incomePct !== null && incomePct > 1)) {
+          cls = 'bp-caution';
+          msg = 'A sensible plan, but keep it firmly in the "entertainment cost" category';
+          if (incomePct !== null) msg += ' — this is about ' + incomePct.toFixed(1) + '% of your monthly income';
+          msg += '. Treat the monthly figure as a hard ceiling, not a target, and remember a no-bet session protects the budget rather than wasting it.';
+        } else {
+          cls = 'bp-ok';
+          msg = 'This keeps betting a small, fixed cost of entertainment';
+          if (incomePct !== null) msg += ' — about ' + incomePct.toFixed(1) + '% of your monthly income';
+          msg += '. Set these same limits inside your operator’s deposit and loss controls, and stop when a limit is reached even if a match is still live.';
+        }
+        bpBanner.className = 'bp-banner ' + cls;
+        bpBanner.textContent = msg;
+        bpBanner.style.display = 'block';
+      }
+
+      [bpBudget, bpShare, bpSessions, bpIncome].forEach(function (el) { el.addEventListener('input', plan); });
+      plan();
+    })();
+  </script>
+
+</BaseLayout>

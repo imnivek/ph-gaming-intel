@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/free-bet-value-calculator`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Free Bet & Bonus Real-Value Calculator",
+      "url": pageUrl,
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free educational calculator that shows the real cash-equivalent value of a free bet or bonus. Because a free bet's stake is not returned when it wins, and wagering requirements grind a bonus through the house margin, its true worth is well below its face value.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": pageUrl },
+        { "@type": "ListItem", "position": 3, "name": "Free Bet Value Calculator", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Free Bet & Bonus Real-Value Calculator — PH Gaming Intel"
+  description="A free educational tool: enter a free bet's face value and odds to see its real cash-equivalent worth — because the stake is never returned when it wins, 'free ₱500' is worth far less. Then add a wagering requirement to see how a rollover grinds a bonus through the house margin. Built to help you value an offer honestly, not to chase one."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">Free Bet Value Calculator</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>Free Bet &amp; Bonus Real-Value Calculator</h1>
+      <p class="tool-dek">A free bet is worth less than the number printed on it. Because the <strong>stake is not returned</strong> when a free bet wins — you keep only the profit — its real cash-equivalent value is well below face. Enter the details below to see what an offer is honestly worth, and how a <strong>wagering requirement</strong> shrinks it further. This is an educational tool, not an inducement: it helps you value a promotion, not chase it.</p>
+    </header>
+
+    <!-- CALCULATOR 1: FREE BET REAL VALUE -->
+    <div class="calc-card">
+      <h2>1. What a free bet is really worth</h2>
+      <p class="calc-note">A free bet returns only the winnings, not the stake. Enter the face value of the free bet and the decimal odds you would place it at. Higher odds convert a free bet into more real value; very short odds convert it into very little.</p>
+
+      <div class="calc-inputs">
+        <label>
+          <span>Free bet face value (PHP)</span>
+          <input type="number" id="fbFace" value="500" min="0" step="1" inputmode="decimal" />
+        </label>
+        <label>
+          <span>Decimal odds</span>
+          <input type="number" id="fbOdds" value="2.86" min="1.01" step="0.01" inputmode="decimal" />
+        </label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="fbProfit">—</div><div class="result-label">Profit if it wins (you keep this)</div></div>
+        <div class="result-item"><div class="result-num" id="fbCash">—</div><div class="result-label">Real cash-equivalent value</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="fbPct">—</div><div class="result-label">Worth this % of face</div></div>
+      </div>
+      <div id="fbCompare" class="margin-breakdown"></div>
+      <p class="calc-formula">Real value = face &times; (1 &minus; 1 &divide; odds), the fair-odds expectation when the stake is not returned. A real-cash bet of the same size would return face &times; odds; a free bet returns only the profit.</p>
+    </div>
+
+    <!-- CALCULATOR 2: WAGERING REQUIREMENT -->
+    <div class="calc-card">
+      <h2>2. How a wagering requirement erodes a bonus</h2>
+      <p class="calc-note">A deposit bonus usually must be "wagered" (rolled over) a number of times before any winnings can be withdrawn. Every one of those bets meets the house margin, so the rollover slowly grinds the bonus down. Enter the bonus, the wagering multiple, and a typical per-bet margin to estimate what survives.</p>
+
+      <div class="calc-inputs calc-inputs-3">
+        <label>
+          <span>Bonus amount (PHP)</span>
+          <input type="number" id="wrBonus" value="500" min="0" step="1" inputmode="decimal" />
+        </label>
+        <label>
+          <span>Wagering requirement (&times;)</span>
+          <input type="number" id="wrMult" value="5" min="0" step="1" inputmode="decimal" />
+        </label>
+        <label>
+          <span>Typical margin per bet (%)</span>
+          <input type="number" id="wrMargin" value="5" min="0" max="50" step="0.5" inputmode="decimal" />
+        </label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="wrTurnover">—</div><div class="result-label">Total you must stake to clear it</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="wrSurvive">—</div><div class="result-label">Estimated value left after rollover</div></div>
+      </div>
+      <p class="calc-formula">Turnover = bonus &times; wagering multiple. Estimated value left &asymp; bonus &minus; (turnover &times; margin), floored at zero. The higher the rollover, the less a "bonus" is actually worth.</p>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>What this tool does — and doesn't — tell you</h3>
+      <p>This calculator estimates the honest value of a promotion so you can judge it, not claim it. A free bet and a bonus are real, but both are worth less than their headline — the free bet because its stake is never returned, the bonus because a wagering requirement runs it through the house margin. The tool does <strong>not</strong> tell you to take any offer, and no promotion removes the built-in house edge. Its honest use is defensive: value the offer at its real worth, read every condition, and never deposit or stake more than you planned in order to "unlock" a bonus.</p>
+      <p class="tool-rg">18+ only. Bet only on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>, set a deposit limit in advance, and treat any stake as the price of entertainment. If promotions are driving how or how much you bet, the <a href="/tools/responsible-gambling-self-assessment">responsible-gambling self-assessment</a> and the National Problem Gambling Helpline (02) 8248-9568 are there for that.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Learn the concepts behind the numbers</h3>
+      <ul>
+        <li><a href="/articles/world-cup-2026-free-bet-bonus-stake-not-returned-wagering-philippines.html">The 'Free' in Free Bet: Why a Bonus Bet Is Worth Less Than Its Face Value</a></li>
+        <li><a href="/articles/world-cup-2026-odds-boost-enhanced-price-promo-knockout-philippines.html">The Price Boost: Why 'Enhanced Odds' Are a Marketing Tool, Not a Gift</a></li>
+        <li><a href="/tools/betting-odds-calculator">Betting Odds &amp; Implied Probability Calculator</a></li>
+        <li><a href="/sports-betting">All Sports Betting coverage &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 36px; }
+
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(13,27,42,.05); }
+    .calc-card h2 { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .calc-note { font-family: var(--font-ui); font-size: 14px; line-height: 1.6; color: var(--text-light); margin: 0 0 22px; }
+
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+    .calc-inputs-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .calc-inputs label { display: flex; flex-direction: column; gap: 7px; }
+    .calc-inputs label span { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text); }
+    .calc-inputs input { font-family: var(--font-ui); font-size: 20px; font-weight: 600; color: var(--dark); padding: 12px 14px; border: 2px solid var(--border); border-radius: 9px; background: var(--cream); width: 100%; box-sizing: border-box; }
+    .calc-inputs input:focus { outline: none; border-color: var(--gold); background: #fff; }
+
+    .calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; margin-bottom: 14px; }
+    .result-item { background: var(--dark); border-radius: 11px; padding: 18px 16px; text-align: center; }
+    .result-item-hl { background: var(--brick); }
+    .result-num { font-family: var(--font-ui); font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+    .result-item-hl .result-num { color: #fff; }
+    .result-label { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: 7px; }
+
+    .calc-formula { font-family: var(--font-ui); font-size: 12.5px; color: var(--text-light); font-style: italic; margin: 6px 0 0; }
+    .margin-breakdown { font-family: var(--font-ui); font-size: 13px; color: var(--text); margin: 4px 0 12px; line-height: 1.7; }
+    .margin-breakdown span { display: inline-block; background: var(--cream); border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; margin: 0 6px 6px 0; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin-bottom: 28px; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+      .calc-inputs, .calc-inputs-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var peso = function (n) {
+        return 'PHP ' + n.toLocaleString('en-PH', { maximumFractionDigits: 2 });
+      };
+
+      // --- Calculator 1: free bet real value ---
+      var fbFace = document.getElementById('fbFace');
+      var fbOdds = document.getElementById('fbOdds');
+      var fbProfit = document.getElementById('fbProfit');
+      var fbCash = document.getElementById('fbCash');
+      var fbPct = document.getElementById('fbPct');
+      var fbCompare = document.getElementById('fbCompare');
+
+      function calcFb() {
+        var face = parseFloat(fbFace.value);
+        var o = parseFloat(fbOdds.value);
+        if (!isFinite(face) || face < 0 || !isFinite(o) || o < 1.01) {
+          fbProfit.textContent = '—'; fbCash.textContent = '—'; fbPct.textContent = '—'; fbCompare.innerHTML = '';
+          return;
+        }
+        var profit = face * (o - 1);
+        var cash = face * (1 - 1 / o);
+        var pct = (1 - 1 / o) * 100;
+        fbProfit.textContent = peso(profit);
+        fbCash.textContent = peso(cash);
+        fbPct.textContent = pct.toFixed(0) + '%';
+        fbCompare.innerHTML =
+          '<span>Real-cash bet of ' + peso(face) + ' would return ' + peso(face * o) + '</span>' +
+          '<span>Free bet returns only ' + peso(profit) + '</span>' +
+          '<span>Stake not returned: ' + peso(face) + '</span>';
+      }
+      fbFace.addEventListener('input', calcFb);
+      fbOdds.addEventListener('input', calcFb);
+
+      // --- Calculator 2: wagering requirement ---
+      var wrBonus = document.getElementById('wrBonus');
+      var wrMult = document.getElementById('wrMult');
+      var wrMargin = document.getElementById('wrMargin');
+      var wrTurnover = document.getElementById('wrTurnover');
+      var wrSurvive = document.getElementById('wrSurvive');
+
+      function calcWr() {
+        var b = parseFloat(wrBonus.value);
+        var m = parseFloat(wrMult.value);
+        var mg = parseFloat(wrMargin.value);
+        if (!isFinite(b) || b < 0 || !isFinite(m) || m < 0 || !isFinite(mg) || mg < 0) {
+          wrTurnover.textContent = '—'; wrSurvive.textContent = '—';
+          return;
+        }
+        var turnover = b * m;
+        var survive = b - turnover * (mg / 100);
+        if (survive < 0) survive = 0;
+        wrTurnover.textContent = peso(turnover);
+        wrSurvive.textContent = peso(survive);
+      }
+      wrBonus.addEventListener('input', calcWr);
+      wrMult.addEventListener('input', calcWr);
+      wrMargin.addEventListener('input', calcWr);
+
+      calcFb();
+      calcWr();
+    })();
+  </script>
+
+</BaseLayout>
