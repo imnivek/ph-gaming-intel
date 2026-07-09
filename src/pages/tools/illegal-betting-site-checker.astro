@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/illegal-betting-site-checker`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Illegal & Offshore Betting Site Red-Flag Checker",
+      "url": pageUrl,
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free, private checklist that scores whether a betting site shows the warning signs of an unlicensed or offshore operator, using PAGCOR/PIGO licensing checks and common fraud red flags. Runs entirely in your browser.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": pageUrl },
+        { "@type": "ListItem", "position": 3, "name": "Illegal Betting Site Checker", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Illegal & Offshore Betting Site Red-Flag Checker — PH Gaming Intel"
+  description="A free, private checklist to test whether a betting site shows the warning signs of an unlicensed or offshore operator — using PAGCOR/PIGO licensing checks and common fraud red flags. Tick what applies to see a risk read-out. Runs entirely in your browser; nothing is saved or sent."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">Illegal Betting Site Checker</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>Illegal &amp; Offshore Betting Site Red-Flag Checker</h1>
+      <p class="tool-dek">Only operators licensed by PAGCOR — through a <strong>PIGO</strong> authorization for online sports betting — are legal and accountable in the Philippines. An unlicensed offshore site can take your deposit, harvest your ID, and vanish, with no recourse. Run a site you are unsure about through the checks below. This tool gives you a structured read, not a verdict: the definitive test is always whether the operator appears on PAGCOR's official licensee list. Nothing you tick is saved or sent.</p>
+    </header>
+
+    <!-- GREEN CHECKS -->
+    <div class="calc-card">
+      <h2>1. Signs of a licensed, accountable operator</h2>
+      <p class="calc-note">Tick each one that is genuinely true and verifiable for the site — not just claimed in its marketing.</p>
+      <div class="check-list" id="greenList">
+        <label class="check-row"><input type="checkbox" data-type="green" /> <span>It appears on PAGCOR's official list of licensed operators / PIGO licensees.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="green" /> <span>It displays a verifiable PAGCOR license number and a real Philippine corporate identity.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="green" /> <span>It offers responsible-gambling controls: deposit limits, time-outs, and self-exclusion.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="green" /> <span>It has clear terms and conditions and a reachable, responsive support channel.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="green" /> <span>It uses standard, traceable local payment methods, not crypto-only or odd workarounds.</span></label>
+      </div>
+    </div>
+
+    <!-- RED FLAGS -->
+    <div class="calc-card">
+      <h2>2. Warning signs of an unlicensed or fraudulent site</h2>
+      <p class="calc-note">Tick each red flag you notice. Any one of these is a reason to stop and verify before depositing a single peso.</p>
+      <div class="check-list" id="redList">
+        <label class="check-row"><input type="checkbox" data-type="red" /> <span>You cannot find it on PAGCOR's licensee list, or its "license" can't be verified.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="red" /> <span>It promises guaranteed wins, "sure" tips, or bonuses that look too large to be real.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="red" /> <span>It pressures you to deposit fast — countdowns, "act now", limited-time urgency.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="red" /> <span>It only accepts crypto, gift cards, or transfers to a personal account.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="red" /> <span>It demands your passport and a selfie up front, before any verifiable licensing.</span></label>
+        <label class="check-row"><input type="checkbox" data-type="red" /> <span>The domain, logo, or name closely mimics a famous brand (a possible clone site).</span></label>
+        <label class="check-row"><input type="checkbox" data-type="red" /> <span>Withdrawals are delayed, refused, or come with new conditions each time.</span></label>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="calc-card">
+      <h2>Your risk read-out</h2>
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="rGreen">0</div><div class="result-label">Legitimacy signs ticked</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="rRed">0</div><div class="result-label">Red flags ticked</div></div>
+      </div>
+      <div id="verdict" class="bp-banner bp-ok" style="margin-top:14px;">Tick the boxes above to see a read-out.</div>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>The one check that settles it</h3>
+      <p>This checklist organises the warning signs, but it cannot certify a site as safe — a polished operation can still be unlicensed. The single definitive test is PAGCOR's own record: if a site is <strong>not</strong> on the official list of licensed operators and PIGO licensees, treat it as illegal in the Philippines no matter how legitimate it looks, and do not deposit. If you have already deposited on a site you now doubt, stop, screenshot everything, and report it. An unlicensed offshore operator offers no consumer protection and no way to recover funds.</p>
+      <p class="tool-rg">18+ only. Bet only on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>. If gambling stops feeling optional, take the <a href="/tools/responsible-gambling-self-assessment">responsible-gambling self-assessment</a> and call the National Problem Gambling Helpline 24/7 at (02) 8248-9568.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Learn the concepts behind the checks</h3>
+      <ul>
+        <li><a href="/articles/spot-illegal-betting-sites-world-cup-2026-philippines.html">How to Spot an Illegal Betting Site During the World Cup: A Philippine Player's Checklist</a></li>
+        <li><a href="/articles/world-cup-2026-betting-scams-philippines-ghost-stadium.html">World Cup 2026 Betting Scams Are Already Live: What Filipino Fans Need to Know</a></li>
+        <li><a href="/articles/offshore-betting-promo-blitz-world-cup-2026-philippines.html">The Offshore Promo Blitz: Why Betting Offers Aimed at Filipinos Look Too Good to Be Legal</a></li>
+        <li><a href="/sports-betting">All Sports Betting coverage &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 36px; }
+
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(13,27,42,.05); }
+    .calc-card h2 { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .calc-note { font-family: var(--font-ui); font-size: 14px; line-height: 1.6; color: var(--text-light); margin: 0 0 18px; }
+
+    .check-list { display: flex; flex-direction: column; gap: 4px; }
+    .check-row { display: flex; align-items: flex-start; gap: 12px; padding: 11px 12px; border-radius: 9px; cursor: pointer; font-family: var(--font-body); font-size: 16px; line-height: 1.5; color: var(--text); }
+    .check-row:hover { background: var(--cream); }
+    .check-row input { width: 20px; height: 20px; margin-top: 1px; flex-shrink: 0; accent-color: var(--gold); cursor: pointer; }
+
+    .calc-results { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .result-item { background: var(--dark); border-radius: 11px; padding: 18px 16px; text-align: center; }
+    .result-item-hl { background: var(--brick); }
+    .result-num { font-family: var(--font-ui); font-size: 30px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+    .result-item-hl .result-num { color: #fff; }
+    .result-label { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: 7px; }
+
+    .bp-banner { font-family: var(--font-ui); font-size: 14.5px; line-height: 1.6; border-radius: 10px; padding: 16px 18px; border-left: 4px solid; }
+    .bp-ok { background: #eef5ee; border-color: #4a7c59; color: #2f5138; }
+    .bp-caution { background: #fbf3e6; border-color: var(--gold); color: #6b5518; }
+    .bp-flag { background: #f9ecea; border-color: var(--brick); color: #7a2b20; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin-bottom: 28px; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var greens = Array.prototype.slice.call(document.querySelectorAll('input[data-type="green"]'));
+      var reds = Array.prototype.slice.call(document.querySelectorAll('input[data-type="red"]'));
+      var rGreen = document.getElementById('rGreen');
+      var rRed = document.getElementById('rRed');
+      var verdict = document.getElementById('verdict');
+
+      function count(list) {
+        var c = 0;
+        for (var i = 0; i < list.length; i++) { if (list[i].checked) c++; }
+        return c;
+      }
+
+      function evaluate() {
+        var g = count(greens);
+        var r = count(reds);
+        rGreen.textContent = String(g);
+        rRed.textContent = String(r);
+
+        var cls, msg;
+        if (r === 0 && g === 0) {
+          cls = 'bp-ok';
+          msg = 'Tick the boxes above to see a read-out. Remember: the definitive test is whether the site is on PAGCOR’s official licensee list.';
+        } else if (r >= 2 || g === 0) {
+          cls = 'bp-flag';
+          msg = 'Strong warning signs. ' + r + ' red flag' + (r === 1 ? '' : 's') + ' ticked' + (g === 0 ? ' and no verifiable signs of licensing' : '') + '. Treat this site as unsafe and do not deposit. If it is not on PAGCOR’s licensee list, it is illegal in the Philippines regardless of how it looks.';
+        } else if (r === 1 || g < 3) {
+          cls = 'bp-caution';
+          msg = 'Proceed with caution. ' + (r === 1 ? 'One red flag is present' : 'Few legitimacy signs are confirmed') + '. Do not deposit until you have confirmed the operator on PAGCOR’s official licensee list and resolved the warning sign.';
+        } else {
+          cls = 'bp-ok';
+          msg = 'This is consistent with a licensed operator (' + g + ' legitimacy signs, no red flags) — but a clean checklist is not proof. Confirm the operator directly on PAGCOR’s official licensee list before you deposit.';
+        }
+        verdict.className = 'bp-banner ' + cls;
+        verdict.textContent = msg;
+      }
+
+      greens.concat(reds).forEach(function (el) { el.addEventListener('change', evaluate); });
+      evaluate();
+    })();
+  </script>
+
+</BaseLayout>

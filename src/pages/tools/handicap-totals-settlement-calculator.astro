@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/handicap-totals-settlement-calculator`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Asian Handicap & Over/Under Settlement Calculator",
+      "url": pageUrl,
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free educational calculator that shows exactly how an Asian handicap or over/under (totals) bet settles for a given final score — win, half win, push, half loss or loss — including quarter-goal lines that split the stake.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": pageUrl },
+        { "@type": "ListItem", "position": 3, "name": "Handicap & Totals Settlement Calculator", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Asian Handicap & Over/Under Settlement Calculator — PH Gaming Intel"
+  description="A free educational tool: enter a handicap or over/under line and a final score to see exactly how the bet settles — win, half win, push (stake back), half loss or loss — including the quarter-goal lines that split your stake in two. Built to explain settlement rules, not to pick a bet."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">Handicap &amp; Totals Settlement</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>Asian Handicap &amp; Over/Under Settlement Calculator</h1>
+      <p class="tool-dek">Asian handicap and over/under markets don't just win or lose — they can <strong>push</strong> (stake refunded) or, on quarter-goal lines, <strong>split</strong> your stake into a half-win or half-loss. That is exactly where bettors get caught out, assuming a bet paid on the result they pictured rather than the rule written into the market. Enter a line and a final score below to see precisely how it settles. This tool explains settlement; it does not pick or predict anything.</p>
+    </header>
+
+    <!-- CALCULATOR 1: ASIAN HANDICAP -->
+    <div class="calc-card">
+      <h2>1. Asian handicap settlement</h2>
+      <p class="calc-note">Enter the handicap on the team you backed (e.g. -0.5, -1, -0.75, +0.25) and the final score. A quarter line such as -0.75 splits your stake across the two nearest lines.</p>
+
+      <div class="calc-inputs calc-inputs-3">
+        <label><span>Your team's handicap</span><input type="number" id="ahLine" value="-0.75" step="0.25" inputmode="decimal" /></label>
+        <label><span>Your team's goals</span><input type="number" id="ahFor" value="2" min="0" step="1" inputmode="decimal" /></label>
+        <label><span>Opponent's goals</span><input type="number" id="ahAgainst" value="1" min="0" step="1" inputmode="decimal" /></label>
+      </div>
+
+      <div class="settle-out" id="ahOut">—</div>
+      <p class="calc-formula">Settlement applies the handicap to your team's score: you win if (your goals + handicap) beats the opponent. A whole-number line can push; a half line never pushes; a quarter line settles as the average of the two nearest lines.</p>
+    </div>
+
+    <!-- CALCULATOR 2: OVER / UNDER -->
+    <div class="calc-card">
+      <h2>2. Over / under (totals) settlement</h2>
+      <p class="calc-note">Enter the totals line (e.g. 2.5, 2.75, 3), whether you backed over or under, and the total goals scored by both teams.</p>
+
+      <div class="calc-inputs calc-inputs-3">
+        <label><span>Total line</span><input type="number" id="ouLine" value="2.75" min="0" step="0.25" inputmode="decimal" /></label>
+        <label>
+          <span>Your selection</span>
+          <select id="ouSide">
+            <option value="over">Over</option>
+            <option value="under">Under</option>
+          </select>
+        </label>
+        <label><span>Total goals scored</span><input type="number" id="ouGoals" value="3" min="0" step="1" inputmode="decimal" /></label>
+      </div>
+
+      <div class="settle-out" id="ouOut">—</div>
+      <p class="calc-formula">Over wins if total goals exceed the line; under wins if they fall short; a whole-number line pushes on an exact hit; a quarter line splits the stake between the two nearest lines.</p>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>Read the settlement, not the label</h3>
+      <p>This calculator makes one thing concrete: what a handicap or totals bet actually pays on a given score. It does <strong>not</strong> recommend a bet, predict a result, or change the value on offer — a shorter price for lower variance is still a priced product with the house margin inside it. The honest use is literacy: know which results win, refund, half-win or lose <em>before</em> you stake, so a "safer-looking" market never settles as a surprise. Spreading stakes across many of these markets on one match means paying the edge several times, not diversifying.</p>
+      <p class="tool-rg">18+ only. Bet only on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>, set a deposit limit in advance, and treat any stake as the price of entertainment. If gambling stops feeling optional, take the <a href="/tools/responsible-gambling-self-assessment">responsible-gambling self-assessment</a> and call the National Problem Gambling Helpline 24/7 at (02) 8248-9568.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Learn the concepts behind the numbers</h3>
+      <ul>
+        <li><a href="/articles/world-cup-2026-asian-handicap-draw-no-bet-tight-knockout-philippines.html">Removing the Draw: What Asian Handicap and Draw-No-Bet Markets Really Cost</a></li>
+        <li><a href="/articles/world-cup-2026-derivative-goal-markets-btts-correct-score-philippines.html">Slices of One Game: How Derivative Goal Markets Hide a Fatter Margin</a></li>
+        <li><a href="/tools/betting-odds-calculator">Betting Odds &amp; Implied Probability Calculator</a></li>
+        <li><a href="/sports-betting">All Sports Betting coverage &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 36px; }
+
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(13,27,42,.05); }
+    .calc-card h2 { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .calc-note { font-family: var(--font-ui); font-size: 14px; line-height: 1.6; color: var(--text-light); margin: 0 0 22px; }
+
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+    .calc-inputs-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .calc-inputs label { display: flex; flex-direction: column; gap: 7px; }
+    .calc-inputs label span { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text); }
+    .calc-inputs input, .calc-inputs select { font-family: var(--font-ui); font-size: 20px; font-weight: 600; color: var(--dark); padding: 12px 14px; border: 2px solid var(--border); border-radius: 9px; background: var(--cream); width: 100%; box-sizing: border-box; }
+    .calc-inputs input:focus, .calc-inputs select:focus { outline: none; border-color: var(--gold); background: #fff; }
+
+    .settle-out { font-family: var(--font-ui); font-size: 19px; font-weight: 700; text-align: center; border-radius: 11px; padding: 20px 18px; line-height: 1.5; border-left: 5px solid; }
+    .st-win { background: #eef5ee; border-color: #4a7c59; color: #2f5138; }
+    .st-halfwin { background: #f2f6ec; border-color: #7a9a4e; color: #48602c; }
+    .st-push { background: #eef1f4; border-color: var(--grey-blue, #7A8FA6); color: #3f4c5a; }
+    .st-halfloss { background: #fbf1e9; border-color: var(--gold); color: #7a5a1c; }
+    .st-loss { background: #f9ecea; border-color: var(--brick); color: #7a2b20; }
+
+    .calc-formula { font-family: var(--font-ui); font-size: 12.5px; color: var(--text-light); font-style: italic; margin: 12px 0 0; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin: 28px 0; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+      .calc-inputs, .calc-inputs-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      // settle one non-quarter line: returns 1 (win), 0 (push), -1 (loss)
+      function settleSingle(diff, hcap) {
+        var v = diff + hcap;
+        if (v > 0) return 1;
+        if (v < 0) return -1;
+        return 0;
+      }
+      // settle a handicap, handling quarter lines by splitting the stake
+      function settleHandicap(diff, hcap) {
+        var isQuarter = (Math.abs((hcap * 2) % 1) > 1e-9); // x.25 / x.75 lines
+        if (isQuarter) {
+          return (settleSingle(diff, hcap - 0.25) + settleSingle(diff, hcap + 0.25)) / 2;
+        }
+        return settleSingle(diff, hcap);
+      }
+
+      var VERDICTS = {
+        '1': { cls: 'st-win', txt: 'WIN — your full stake wins at the odds.' },
+        '0.5': { cls: 'st-halfwin', txt: 'HALF WIN — half your stake wins at the odds; the other half is refunded.' },
+        '0': { cls: 'st-push', txt: 'PUSH — no win, no loss. Your full stake is refunded.' },
+        '-0.5': { cls: 'st-halfloss', txt: 'HALF LOSS — half your stake is lost; the other half is refunded.' },
+        '-1': { cls: 'st-loss', txt: 'LOSS — your full stake is lost.' }
+      };
+
+      function render(el, r) {
+        var key = String(r);
+        var v = VERDICTS[key] || VERDICTS['0'];
+        el.className = 'settle-out ' + v.cls;
+        el.textContent = v.txt;
+      }
+
+      // --- Handicap ---
+      var ahLine = document.getElementById('ahLine');
+      var ahFor = document.getElementById('ahFor');
+      var ahAgainst = document.getElementById('ahAgainst');
+      var ahOut = document.getElementById('ahOut');
+
+      function calcAh() {
+        var h = parseFloat(ahLine.value);
+        var f = parseFloat(ahFor.value);
+        var a = parseFloat(ahAgainst.value);
+        if (!isFinite(h) || !isFinite(f) || f < 0 || !isFinite(a) || a < 0) {
+          ahOut.className = 'settle-out st-push'; ahOut.textContent = 'Enter a handicap and a valid score.';
+          return;
+        }
+        render(ahOut, settleHandicap(f - a, h));
+      }
+      [ahLine, ahFor, ahAgainst].forEach(function (el) { el.addEventListener('input', calcAh); });
+
+      // --- Over / Under ---
+      var ouLine = document.getElementById('ouLine');
+      var ouSide = document.getElementById('ouSide');
+      var ouGoals = document.getElementById('ouGoals');
+      var ouOut = document.getElementById('ouOut');
+
+      function calcOu() {
+        var line = parseFloat(ouLine.value);
+        var goals = parseFloat(ouGoals.value);
+        if (!isFinite(line) || line < 0 || !isFinite(goals) || goals < 0) {
+          ouOut.className = 'settle-out st-push'; ouOut.textContent = 'Enter a line and total goals.';
+          return;
+        }
+        // Over behaves like a handicap: diff = goals, hcap = -line
+        var over = settleHandicap(goals, -line);
+        var r = (ouSide.value === 'over') ? over : (over === 0 ? 0 : -over);
+        render(ouOut, r);
+      }
+      [ouLine, ouGoals].forEach(function (el) { el.addEventListener('input', calcOu); });
+      ouSide.addEventListener('change', calcOu);
+
+      calcAh();
+      calcOu();
+    })();
+  </script>
+
+</BaseLayout>

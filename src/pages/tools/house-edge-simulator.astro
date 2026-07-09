@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/house-edge-simulator`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "House-Edge & Bankroll Depletion Simulator",
+      "url": pageUrl,
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free educational simulator that shows how the built-in house edge erodes a bankroll over many bets. Enter a bankroll, stake, edge and bet count to see the expected money lost and how long a bankroll lasts on average.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": pageUrl },
+        { "@type": "ListItem", "position": 3, "name": "House-Edge Simulator", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="House-Edge & Bankroll Depletion Simulator — PH Gaming Intel"
+  description="A free educational tool: enter a bankroll, average stake, house edge, and number of bets to see how the built-in edge grinds a bankroll down over time — the expected amount lost, and roughly how long the money lasts. Built to show why volume, not stake size, is how the house wins."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">House-Edge Simulator</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>House-Edge &amp; Bankroll Depletion Simulator</h1>
+      <p class="tool-dek">Every bet on a margined market gives up a small, fixed slice to the house. Any single bet can win — but across many bets, that slice compounds into a predictable drain. This simulator shows the <strong>expected</strong> path of a bankroll: how much the edge takes as your total turnover grows, and roughly how long the money lasts. It models the average, not luck; real results swing above and below it, but the direction is set by the edge.</p>
+    </header>
+
+    <!-- CALCULATOR 1: EXPECTED DEPLETION -->
+    <div class="calc-card">
+      <h2>1. What the edge takes over time</h2>
+      <p class="calc-note">Enter your bankroll, your average stake per bet, the house edge (margin) on the markets you bet, and how many bets you plan to place. A typical single-market football margin is around 5%; parlays and props run much higher.</p>
+
+      <div class="calc-inputs calc-inputs-3">
+        <label><span>Starting bankroll (PHP)</span><input type="number" id="hBankroll" value="5000" min="0" step="100" inputmode="decimal" /></label>
+        <label><span>Average stake per bet (PHP)</span><input type="number" id="hStake" value="200" min="1" step="10" inputmode="decimal" /></label>
+        <label><span>House edge per bet (%)</span><input type="number" id="hEdge" value="5" min="0.1" max="50" step="0.5" inputmode="decimal" /></label>
+      </div>
+      <div class="calc-inputs">
+        <label><span>Number of bets</span><input type="number" id="hBets" value="100" min="1" step="1" inputmode="decimal" /></label>
+        <label><span>Total staked (turnover)</span><input type="text" id="hTurnover" value="—" readonly /></label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="hLoss">—</div><div class="result-label">Expected amount lost</div></div>
+        <div class="result-item"><div class="result-num" id="hLeft">—</div><div class="result-label">Expected bankroll left</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="hEmpty">—</div><div class="result-label">Bets until bankroll gone (avg)</div></div>
+      </div>
+      <p class="calc-formula">Expected loss = total staked &times; house edge, where total staked = stake &times; number of bets. The same money re-bet many times is charged the edge every time — which is why <em>how often</em> you bet matters more than how much.</p>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>What this simulator shows — and doesn't</h3>
+      <p>This tool models the <strong>expected value</strong> — the average outcome the maths points to. It does not predict your actual results: variance means a real bankroll can rise for a while or fall much faster, and a lucky run does not change the underlying edge. What the tool makes visible is the direction the edge sets over time, and the fact that re-betting the same money grinds it down through turnover. There is no stake size or system that removes the edge; the honest use is to see the drain clearly and decide your limits accordingly.</p>
+      <p class="tool-rg">18+ only. Bet only on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>, set a deposit limit in advance, and treat any stake as the price of entertainment. Plan a ceiling with the <a href="/tools/responsible-gambling-budget-planner">budget &amp; limit planner</a>, check where you stand with the <a href="/tools/responsible-gambling-self-assessment">self-assessment</a>, and call the National Problem Gambling Helpline 24/7 at (02) 8248-9568.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Learn the concepts behind the numbers</h3>
+      <ul>
+        <li><a href="/articles/world-cup-2026-daily-match-volume-betting-frequency-action-habit-philippines.html">Why Betting Frequency, Not Stake Size, Is How the House Wins</a></li>
+        <li><a href="/tools/betting-odds-calculator">Betting Odds &amp; Implied Probability Calculator</a></li>
+        <li><a href="/tools/parlay-margin-calculator">Parlay &amp; Accumulator Margin Calculator</a></li>
+        <li><a href="/sports-betting">All Sports Betting coverage &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 36px; }
+
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(13,27,42,.05); }
+    .calc-card h2 { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .calc-note { font-family: var(--font-ui); font-size: 14px; line-height: 1.6; color: var(--text-light); margin: 0 0 22px; }
+
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+    .calc-inputs-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .calc-inputs label { display: flex; flex-direction: column; gap: 7px; }
+    .calc-inputs label span { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text); }
+    .calc-inputs input { font-family: var(--font-ui); font-size: 20px; font-weight: 600; color: var(--dark); padding: 12px 14px; border: 2px solid var(--border); border-radius: 9px; background: var(--cream); width: 100%; box-sizing: border-box; }
+    .calc-inputs input:focus { outline: none; border-color: var(--gold); background: #fff; }
+    .calc-inputs input[readonly] { background: #eef1f4; color: var(--text-light); }
+
+    .calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; margin-bottom: 14px; }
+    .result-item { background: var(--dark); border-radius: 11px; padding: 18px 16px; text-align: center; }
+    .result-item-hl { background: var(--brick); }
+    .result-num { font-family: var(--font-ui); font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+    .result-item-hl .result-num { color: #fff; }
+    .result-label { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: 7px; }
+
+    .calc-formula { font-family: var(--font-ui); font-size: 12.5px; color: var(--text-light); font-style: italic; margin: 6px 0 0; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin-bottom: 28px; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+      .calc-inputs, .calc-inputs-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var peso = function (n) {
+        return 'PHP ' + n.toLocaleString('en-PH', { maximumFractionDigits: 0 });
+      };
+
+      var hBankroll = document.getElementById('hBankroll');
+      var hStake = document.getElementById('hStake');
+      var hEdge = document.getElementById('hEdge');
+      var hBets = document.getElementById('hBets');
+      var hTurnover = document.getElementById('hTurnover');
+      var hLoss = document.getElementById('hLoss');
+      var hLeft = document.getElementById('hLeft');
+      var hEmpty = document.getElementById('hEmpty');
+
+      function sim() {
+        var bank = parseFloat(hBankroll.value);
+        var stake = parseFloat(hStake.value);
+        var edge = parseFloat(hEdge.value);
+        var bets = parseFloat(hBets.value);
+        if (!isFinite(bank) || bank < 0 || !isFinite(stake) || stake <= 0 || !isFinite(edge) || edge <= 0 || !isFinite(bets) || bets < 1) {
+          hTurnover.value = '—'; hLoss.textContent = '—'; hLeft.textContent = '—'; hEmpty.textContent = '—';
+          return;
+        }
+        var turnover = stake * bets;
+        var lossPerBet = stake * (edge / 100);
+        var expLoss = turnover * (edge / 100);
+        if (expLoss > bank) expLoss = bank;
+        var left = bank - expLoss;
+        var betsToEmpty = Math.ceil(bank / lossPerBet);
+        hTurnover.value = peso(turnover);
+        hLoss.textContent = peso(expLoss);
+        hLeft.textContent = peso(left);
+        hEmpty.textContent = betsToEmpty.toLocaleString('en-PH') + ' bets';
+      }
+
+      [hBankroll, hStake, hEdge, hBets].forEach(function (el) { el.addEventListener('input', sim); });
+      sim();
+    })();
+  </script>
+
+</BaseLayout>

@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://phgamingintel.com';
+const pageUrl = `${siteUrl}/tools/cash-out-value-calculator`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Cash-Out Fair-Value Calculator",
+      "url": pageUrl,
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+      "description": "A free educational calculator for the fair value of a cash-out offer. Enter your original stake and odds and the current live odds to see the mathematically fair cash-out — and compare it with what a sportsbook actually offers to reveal the discount.",
+      "publisher": { "@type": "Organization", "name": "PH Gaming Intel", "url": `${siteUrl}/` }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": pageUrl },
+        { "@type": "ListItem", "position": 3, "name": "Cash-Out Value Calculator", "item": pageUrl }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Cash-Out Fair-Value Calculator — PH Gaming Intel"
+  description="A free educational tool: enter your original stake and odds and the current live odds to see the mathematically fair cash-out value — then compare it with what the sportsbook offers to reveal how much the 'cash out' button quietly shaves off. Built to show the discount, not to time a bet."
+  activePage=""
+  jsonLd={jsonLd}
+>
+
+  <section class="tool-wrap">
+
+    <nav class="tool-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>&rsaquo;</span> <span>Tools</span> <span>&rsaquo;</span> <span aria-current="page">Cash-Out Value Calculator</span>
+    </nav>
+
+    <header class="tool-head">
+      <h1>Cash-Out Fair-Value Calculator</h1>
+      <p class="tool-dek">The "cash out" button offers to settle a live bet early — but the number it shows you is a <strong>priced product</strong>, derived from the current odds and then shaved by the operator's margin. This tool works out the <strong>mathematically fair</strong> cash-out from your original bet and the current live price, so you can compare it with what the button actually offers and see the discount. Educational only: it explains the number, it does not tell you when to press.</p>
+    </header>
+
+    <!-- CALCULATOR 1: FAIR VALUE -->
+    <div class="calc-card">
+      <h2>1. The fair cash-out value</h2>
+      <p class="calc-note">Enter the stake and the decimal odds you originally took, then the current live decimal odds for the same outcome (shorter odds mean your bet is now more likely; longer odds, less likely).</p>
+
+      <div class="calc-inputs calc-inputs-3">
+        <label><span>Original stake (PHP)</span><input type="number" id="coStake" value="100" min="0" step="1" inputmode="decimal" /></label>
+        <label><span>Original decimal odds</span><input type="number" id="coOrig" value="3.00" min="1.01" step="0.01" inputmode="decimal" /></label>
+        <label><span>Current live odds</span><input type="number" id="coNow" value="1.80" min="1.01" step="0.01" inputmode="decimal" /></label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="coPotential">—</div><div class="result-label">Full return if it wins</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="coFair">—</div><div class="result-label">Fair cash-out value</div></div>
+        <div class="result-item"><div class="result-num" id="coProb">—</div><div class="result-label">Current implied chance</div></div>
+      </div>
+      <p class="calc-formula">Fair cash-out = stake &times; original odds &divide; current odds. It equals your full potential return multiplied by the outcome's current implied probability — the honest present value of the bet, before any margin is taken.</p>
+    </div>
+
+    <!-- CALCULATOR 2: THE SHAVE -->
+    <div class="calc-card">
+      <h2>2. What the button actually offers</h2>
+      <p class="calc-note">Enter the cash-out amount the sportsbook is showing you. The tool compares it with the fair value above to reveal how much is being shaved off.</p>
+
+      <div class="calc-inputs">
+        <label><span>Cash-out offered (PHP)</span><input type="number" id="coOffered" value="150" min="0" step="1" inputmode="decimal" /></label>
+        <label><span>Fair value (from above)</span><input type="text" id="coFairEcho" value="—" readonly /></label>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-item"><div class="result-num" id="coShave">—</div><div class="result-label">Amount shaved off</div></div>
+        <div class="result-item result-item-hl"><div class="result-num" id="coShavePct">—</div><div class="result-label">Discount vs fair value</div></div>
+      </div>
+      <p class="calc-formula">Discount = (fair value &minus; offered) &divide; fair value. A positive discount is the operator's margin on the cash-out — the price of settling early. Cashing out both when you're ahead (clipping upside) and when you're behind (partial refund) tends to favour the house.</p>
+    </div>
+
+    <!-- HONEST FRAMING -->
+    <div class="tool-disclaimer">
+      <h3>What this tool does — and doesn't — tell you</h3>
+      <p>This calculator shows the fair present value of a bet and how far a cash-out offer sits below it. It does <strong>not</strong> tell you whether to cash out, predict the result, or time the market — the live odds already include the bookmaker's margin, and the cash-out is shaved again on top. The honest use is to see that "cash out" is a market the operator prices in its own favour, not a courtesy. If you decided your bet in a calm moment, a button designed for a hot one deserves the same scrutiny as any other price.</p>
+      <p class="tool-rg">18+ only. Bet only on a <a href="/articles/how-to-bet-fifa-world-cup-2026-philippines-pagcor.html">PAGCOR-licensed sportsbook</a>, set a deposit limit in advance, and treat any stake as the price of entertainment. If gambling stops feeling optional, take the <a href="/tools/responsible-gambling-self-assessment">responsible-gambling self-assessment</a> and call the National Problem Gambling Helpline 24/7 at (02) 8248-9568.</p>
+    </div>
+
+    <div class="tool-related">
+      <h3>Learn the concepts behind the numbers</h3>
+      <ul>
+        <li><a href="/articles/world-cup-2026-cash-out-feature-late-goals-knockout-philippines.html">Cashed Out Too Early: How the 'Cash Out' Button Sells You Certainty at a Discount</a></li>
+        <li><a href="/articles/world-cup-2026-reverse-withdrawal-friction-pending-payout-philippines.html">The Pending-Withdrawal Trap: How 'Reverse Withdrawal' Design Keeps Your Money in Play</a></li>
+        <li><a href="/tools/betting-odds-calculator">Betting Odds &amp; Implied Probability Calculator</a></li>
+        <li><a href="/sports-betting">All Sports Betting coverage &rsaquo;</a></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <style>
+    .tool-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-breadcrumb { font-family: var(--font-ui); font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--gold); }
+    .tool-breadcrumb span { margin: 0 4px; }
+    .tool-head h1 { font-family: var(--font-body); font-size: 36px; line-height: 1.2; color: var(--dark); margin: 0 0 16px; font-weight: 800; }
+    .tool-dek { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--text); margin-bottom: 36px; }
+
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(13,27,42,.05); }
+    .calc-card h2 { font-family: var(--font-ui); font-size: 20px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .calc-note { font-family: var(--font-ui); font-size: 14px; line-height: 1.6; color: var(--text-light); margin: 0 0 22px; }
+
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+    .calc-inputs-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .calc-inputs label { display: flex; flex-direction: column; gap: 7px; }
+    .calc-inputs label span { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text); }
+    .calc-inputs input { font-family: var(--font-ui); font-size: 20px; font-weight: 600; color: var(--dark); padding: 12px 14px; border: 2px solid var(--border); border-radius: 9px; background: var(--cream); width: 100%; box-sizing: border-box; }
+    .calc-inputs input:focus { outline: none; border-color: var(--gold); background: #fff; }
+    .calc-inputs input[readonly] { background: #eef1f4; color: var(--text-light); }
+
+    .calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; margin-bottom: 14px; }
+    .result-item { background: var(--dark); border-radius: 11px; padding: 18px 16px; text-align: center; }
+    .result-item-hl { background: var(--brick); }
+    .result-num { font-family: var(--font-ui); font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+    .result-item-hl .result-num { color: #fff; }
+    .result-label { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: 7px; }
+
+    .calc-formula { font-family: var(--font-ui); font-size: 12.5px; color: var(--text-light); font-style: italic; margin: 6px 0 0; }
+
+    .tool-disclaimer { background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin-bottom: 28px; }
+    .tool-disclaimer h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
+    .tool-disclaimer p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+    .tool-disclaimer p:last-child { margin-bottom: 0; }
+    .tool-rg { font-size: 14px !important; color: var(--text-light) !important; }
+    .tool-disclaimer a { color: var(--brick); font-weight: 600; }
+
+    .tool-related h3 { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 14px; }
+    .tool-related ul { list-style: none; padding: 0; margin: 0; }
+    .tool-related li { border-bottom: 1px solid var(--border); padding: 11px 0; }
+    .tool-related a { font-family: var(--font-body); font-size: 16px; color: var(--text); text-decoration: none; }
+    .tool-related a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .tool-head h1 { font-size: 28px; }
+      .calc-inputs, .calc-inputs-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var peso = function (n) {
+        return 'PHP ' + n.toLocaleString('en-PH', { maximumFractionDigits: 2 });
+      };
+
+      var coStake = document.getElementById('coStake');
+      var coOrig = document.getElementById('coOrig');
+      var coNow = document.getElementById('coNow');
+      var coPotential = document.getElementById('coPotential');
+      var coFair = document.getElementById('coFair');
+      var coProb = document.getElementById('coProb');
+      var coOffered = document.getElementById('coOffered');
+      var coFairEcho = document.getElementById('coFairEcho');
+      var coShave = document.getElementById('coShave');
+      var coShavePct = document.getElementById('coShavePct');
+
+      var fairValue = null;
+
+      function calcFair() {
+        var s = parseFloat(coStake.value);
+        var o = parseFloat(coOrig.value);
+        var n = parseFloat(coNow.value);
+        if (!isFinite(s) || s < 0 || !isFinite(o) || o < 1.01 || !isFinite(n) || n < 1.01) {
+          fairValue = null;
+          coPotential.textContent = '—'; coFair.textContent = '—'; coProb.textContent = '—';
+          coFairEcho.value = '—';
+          calcShave();
+          return;
+        }
+        var potential = s * o;
+        fairValue = s * o / n;
+        coPotential.textContent = peso(potential);
+        coFair.textContent = peso(fairValue);
+        coProb.textContent = (100 / n).toFixed(1) + '%';
+        coFairEcho.value = peso(fairValue);
+        calcShave();
+      }
+
+      function calcShave() {
+        var offered = parseFloat(coOffered.value);
+        if (fairValue === null || !isFinite(offered) || offered < 0 || fairValue <= 0) {
+          coShave.textContent = '—'; coShavePct.textContent = '—';
+          return;
+        }
+        var shave = fairValue - offered;
+        var pct = (shave / fairValue) * 100;
+        coShave.textContent = peso(shave);
+        coShavePct.textContent = pct.toFixed(1) + '%';
+      }
+
+      [coStake, coOrig, coNow].forEach(function (el) { el.addEventListener('input', calcFair); });
+      coOffered.addEventListener('input', calcShave);
+      calcFair();
+    })();
+  </script>
+
+</BaseLayout>

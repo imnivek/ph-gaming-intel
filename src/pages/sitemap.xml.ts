@@ -67,6 +67,30 @@ export const GET: APIRoute = () => {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/house-edge-simulator</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/illegal-betting-site-checker</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/cash-out-value-calculator</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
+    `  <url>
+    <loc>${SITE.url}/tools/handicap-totals-settlement-calculator</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`,
     ...CATEGORIES.map(
       (c) => `  <url>
     <loc>${SITE.url}/${c.slug}</loc>
